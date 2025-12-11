@@ -1,0 +1,3837 @@
+7K Digital Audio Board 
+
+
+Revision 2.0 
+19-Aug-2007 
+
+Vyex LLC 
+
+www.vyex.com 
+
+
+INTRODUCTION 1 
+
+LIMITED HARDWARE WARRANTY 2 
+
+COPYRIGHT NOTICE AND LIMITED SOFTWARE WARRANTY 2 
+
+TRADEMARKS 3 
+
+INSTALLATION 4 
+Installation into the rack mount cabinet. 4 
+Installing the FLASH Card 5 
+Updating the 7K repeater controller firmware 6 
+
+USING THE DAB 7 
+LED Status indicator 7 
+Basic use 8 
+Supported WAV File formats 9 
+Things to consider when deciding file storage parameters 9 
+Recommended editing programs 10 
+
+STORING FILES ON THE FLASH CARD 10 
+Multi-Media Card adapters 10 
+File system requirements 11 
+File system structure for the Audio Files 12 
+Special files stored in the root directory 12 
+
+CONFIG.INI 12 
+DAB-MAIN.BIN 12 
+DAB-BOOT.BIN 13 
+7K-IMAGE.BIN 13 
+7K-PATCH.BIN 13 
+
+SPECIAL WORDS 13 
+9700 – Custom Delay 13 
+9701 – Long word continuation 13 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+9702 – Playback Speed Factor 14 
+9710 – Play Random File 14 
+9720 – Send Serial Characters 15 
+9790 – Force 7KDAB Reset 15 
+9796 – Load 7K Patch file 16 
+9797 – Provide RTC data to DAB 16 
+9798 – Load 7K-IMAGE.BIN 16 
+9799 – Save 7K-IMAGE.BIN 16 
+
+MORSE CODE FEATURES 17 
+Message File Location 17 
+Message File contents 17 
+Message file control characters 17 
+
+Pitch 17 
+Speed 18 
+Amplitude 18 
+Sending ‘Prosigns’ 18 
+
+7KDAB ‘Busy’ message 19 
+
+USING THE SERIAL PORT 20 
+Hardware Interface 20 
+Baudrate 20 
+Password 20 
+Connecting a Modem to the Serial Port 21 
+The Command Line Interface 22 
+
+CD – Change Directory 22 
+DIR – Directory command 23 
+DEL – Delete File 24 
+REN – Rename File 24 
+FIND – Find a file 24 
+SY – Send Y-Modem 25 
+RY – Receive Y-Modem 25 
+LO – Logout 25 
+REBOOT – Reboot DAB 25 
+SMHOST – Force Smart Host Present Flag 25 
+STOP – Stop current WAV file playback 26 
+TIME – Display or Set the current Time and Date 26 
+TYPE – Type a file to the console 26 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Command line interface commands available with 7K firmware 2.04 27 
+#!; -Issuing commands to the 7K 27 
+RFP – Remote Front Panel 28 
+SCRIPT – Execute text file to program the 7K controller 29 
+
+FIRMWARE UPDATE PROCEDURE. 30 
+
+MMC card reader/writer attached to your computer running Windows 30 
+
+Use your terminal emulator to transfer a file to the MMC card 30 
+
+APPENDIX A LIBRARY CONTENTS 31 
+
+7K SSM Words 31 
+
+Sean Caldwell Words 31 
+
+Test Tones 42 
+
+APPENDIX B ASCII CHARACTER CHART 43 
+
+APPENDIX C – MORSE CODE CHARACTERS 44 
+
+APPENDIX D VERSION HISTORY 45 
+
+Product Firmware Revisions 45 
+
+User Manual Revisions 45 
+1.2 – 21-Oct-2003 45 
+1.3 – 10-Dec-2003 45 
+1.5 – 9-Feb-2004 45 
+1.5a – 17-Feb-2004 45 
+1.6 – 20-Mar-2004 45 
+1.6a – 12-May-2004 45 
+1.7 – 25-July-2004 45 
+1.7a – 13-May-2006 45 
+1.8 – 14-Aug-2007 45 
+2.0 – 19-Aug-2007 45 
+
+APPENDIX E 7K VERSION 2.04 RELEASE NOTES 46 
+
+Disclaimer 46 
+
+Overview 46 
+
+New Commands 47 
+{PW} 16 Stop playback of current speech word 47 
+{PW} 24 xxxx Remove Command From Macro 47 
+{PW} 36 T F xxxx Modify ID Timers 47 
+{PW} 49 90/91/92/93 xx Message Handler Initial Message Delay 48 
+{PW} 49 94/95 xx Logic output pulse duration 48 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+{PW} 76 ff yyyy (zzzz) IF-THEN-ELSE 49 
+
+New Switches 50 
+{PW} 63 16 x Daylight Savings time correction 50 
+{PW} 63 19 x Ignore Landline Busy Input 50 
+{PW} 63 33 x Enable “OK” Command Responses 50 
+{PW} 63 34 x Enable “?ERR” Command Responses 50 
+{PW} 63 35 x Courtesy message can be queued during message playback 50 
+{PW} 63 36 x Suppress command responses within macro execution 50 
+{PW} 63 92 x User Soft Switch 1 51 
+{PW} 63 93 x User Soft Switch 2 51 
+{PW} 63 94 x User Soft Switch 3 51 
+{PW} 63 95 x User Soft Switch 4 51 
+{PW} 63 96 x User Soft Switch 5 51 
+{PW} 63 97 x User Soft Switch 6 51 
+{PW} 63 98 x User Soft Switch 7 51 
+
+Changed Commands 52 
+{PW} 02 f … CTCSS Encoder 52 
+{PW} 40 r xxx Set Transmit Timeout Timers 53 
+{PW} 89 … Select DTMF Priority/Scan 53 
+{PW} 50 0/1 99 Review Initial and Normal Tail ID’s 53 
+{PW} 96 t xx Set DTMF Mute Delay 53 
+{PW} 63 xx 0/1/2/3 Set User Switch 53 
+
+New Message Types 54 
+
+Operational Changes 54 
+
+Bug Fixes and Changes 55 
+
+Version 2.04 55 
+
+Version 2.04a 55 
+
+Version 2.04b 55 
+
+Version 2.04c 55 
+
+Version 2.04d 55 
+
+Version 2.04e 55 
+
+Version 2.04f 56 
+
+APPENDIX F SCHEMATICS 57 
+
+APPENDIX G – DAUGHTER PCB INSTALLATION 61 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Introduction 
+
+Thank you for purchasing the 7K Digital Audio Board (DAB). 
+
+The DAB has been designed as a “drop-in” replacement for the Speech Synthesizer board in the S-Com 7K repeater 
+controller, but does more than just talk. 
+
+The DAB utilizes a fast, FLASH based, single chip microprocessor to support audio playback from a FLASH based Multi-
+Media Card (MMC) which is used to store digitized speech files played back in response to commands from the 7K 
+repeater controller. 
+
+The MMC media card is the same type of solid state storage media that is used in many consumer devices such as 
+cameras, personal digital assistants, and MP3 players. The file system used on the FLASH card is the same FAT16 file 
+system used on desktop computers for years and is thus compatible with any third party MMC I/O device that supports 
+this type of file system. The FAT16 file system constrains the total storage space to approximately 2 Gigabytes, which 
+provides the potential to store hours of audio material. The user is free to upgrade the amount of storage space available 
+at any time simply by purchasing higher capacity FLASH cards from the vendor of their choice. 
+
+The audio files are stored in the well-known WAV file format, which is a subset of the Microsoft Resource Interchange File 
+Format (RIFF) file format. This flexible file format supports dozens of different audio compression methods, of which the 
+DAB supports only a few specific types. 
+
+The DAB also has an RS-232 serial port that can be used to send or retrieve files from the FLASH card in order to allow 
+the update of audio files, product firmware, and to make product configuration changes. 
+
+The DAB’s product firmware is fully field updateable and new firmware revisions can be installed by the end as they 
+become available. 
+
+If you have any questions or comments regarding this product, please know that your feedback is always appreciated. 
+
+Contact information: 
+
+Vyex LLC 
+S64 W24740 Susan Street 
+Waukesha, WI 53189 
+
+262.513.0150 
+
+support@vyex.com 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Limited Hardware Warranty 
+
+Vyex LLC warrants that its products will be free from defects in materials and workmanship for a period of one year from 
+the date of shipment. 
+
+This warranty does not cover damage caused by any of the following: 
+
+· Physical damage of any kind. 
+· Improper installation or connection. 
+· Electro-static discharge damage caused by improper product handling. 
+· Lightning. 
+· Any product in which the customer has attempted to make field repairs or modifications. 
+
+During the term of the warranty, Vyex LLC will cover the cost of product repair including parts, labor and return shipping. 
+
+Vyex LLC may not support all third party manufacture’s Multi-Media Cards as viable storage devices for use with this 
+product. 
+
+Vyex LLC reserves the right to refund the purchase price as its exclusive warranty remedy. 
+
+For service contact Vyex at 262.513.0150 
+
+Any product return must include a Return Materials Authorization (RMA) number on the outside of the package. 
+
+Copyright Notice and Limited Software Warranty 
+
+The product software and associated audio files represent copyrighted materials, an original work of Vyex LLC. 
+
+Vyex LLC retains all right, title, and interest in and to the Software, and any rights not granted to you herein are reserved 
+by Vyex LLC. You may not reverse engineer, disassemble, decompile, or translate the Software, or otherwise attempt to 
+derive the source code of the Software, except to the extent allowed under any applicable law. If applicable law permits 
+such activities, any information so discovered must be promptly disclosed to Vyex LLC and shall be deemed to be the 
+confidential proprietary information of Vyex LLC. 
+
+Vyex LLC provides the following End-User License Agreements with respect to the software it distributes. An End-User 
+License Agreement is a legal agreement between you (either an individual or a single entity) and Vyex LLC for a Vyex 
+LLC software product. Such software product includes computer software and may include associated media, printed 
+materials, and "online" or electronic documentation ("SOFTWARE PRODUCT"). By installing, copying, or otherwise using 
+the SOFTWARE PRODUCT, you agree to be bound by the terms of the End-User License Agreement. If you do not agree 
+to the terms of the agreement, do not install or use the SOFTWARE PRODUCT; you may, however, return it to your place 
+of purchase for a full refund. 
+
+You may permanently transfer all of your rights under this End-User License Agreement, provided the recipient agrees to 
+the terms of this End-User License Agreement. 
+
+All title and copyrights in and to the SOFTWARE PRODUCT (including but not limited to any images, photographs, audio, 
+and text, incorporated into the SOFTWARE PRODUCT), the accompanying printed materials, and any copies of the 
+SOFTWARE PRODUCT are owned by Vyex LLC or its suppliers. The SOFTWARE PRODUCT is protected by copyright 
+laws and international treaty provisions. Therefore, you must treat the SOFTWARE PRODUCT like any other copyrighted 
+material. 
+
+Vyex LLC expressly disclaims any warranty for the SOFTWARE PRODUCT. The SOFTWARE PRODUCT and any 
+related documentation is provided "as is" without warranty of any kind, either express or implied, including, without 
+limitation, the implied warranties or merchantability, fitness for a particular purpose, or noninfringement. The entire risk 
+arising out of use or performance of the SOFTWARE PRODUCT remains with you. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+In no event shall Vyex LLC or its suppliers be liable for any damages whatsoever (including, without limitation, damages 
+for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of 
+the use of or inability to use this Vyex LLC product, even if Vyex LLC has been advised of the possibility of such 
+damages. Because some states/jurisdictions do not allow the exclusion or limitation of liability for consequential or 
+incidental damages, the above limitation may not apply to you. 
+
+LICENSEE understands that the Software is subject to export control laws and regulations. 
+
+LICENSEE may not download or otherwise export or re-export the software or any underlying information or technology 
+except in full compliance with all United States and other applicable laws and regulations. 
+
+LICENSEE is responsible for paying any sales or use tax imposed at any time whatsoever on this transaction. 
+
+LICENSEE acknowledges that LICENSEE has read this Agreement, understands it, and agrees to be bound by its terms 
+and conditions. This Agreement embraces the full and complete understanding of the parties as to the subject matter 
+hereof and supersedes any prior agreement, whether written or oral, relating to the subject matter hereof, and may not be 
+altered or modified, except by written amendment which expressly refers to this Agreement and which is duly executed by 
+authorized representatives of both parties. If any part of this Agreement is found void and unenforceable, it will not affect 
+the validity of the balance of the Agreement, which shall remain valid and enforceable according to its terms. Further, this 
+Agreement shall be construed and governed in accordance with the laws of the State of Wisconsin, excluding the 
+application of its conflicts of law rules. 
+
+Trademarks 
+
+MultiMediaCardTM is a trademark of Infineon Technologies AG 
+
+Microsoft, Windows, and MS-DOS are registered trademarks of Microsoft Corporation. 
+
+All other brand and product names are trademarks or registered trademarks of their respective companies and are hereby 
+acknowledged. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Installation 
+
+CAUTION: 
+The DAB is a static sensitive electronic device. Proper precautions should be exercised when handling the DAB. 
+Installation and connection of the DAB can only be performed with power removed from the controller. 
+
+Installation into the rack mount cabinet. 
+
+The DAB is installed in the controller cabinet to the left of the repeater controller circuit board and secured in place with 
+four 6-32 screws. 
+
+
+Using the supplied ribbon cable, connect the ribbon cable 
+between J4 on the DAB and the speech board connection, 
+P8, on the 7K repeater controller PCB. 
+
+As the 7K does not use a keyed or shrouded connector, use 
+due caution when making the connection to the 7K 
+connector. If the cable is not inserted correctly, severe 
+damage may occur to the DAB and will not be covered 
+by warranty. 
+
+
+If the serial port on the DAB will be utilized, the short ribbon cable assembly containing the DB-9 connector can be 
+connected to J3 on the DAB. The method of routing the cable out of the 7K cabinet and/or mounting of the DB-9 
+connector in the cabinet is left to the end user. Please note that the modification of the controller cabinet may void your 
+warranty with S-Com. 
+
+If you do attempt to modify the cabinet, please use proper precautions to guard against physical damage to the circuit 
+boards inside the cabinet, and against any metal debris which could potentially short components on the PCB’s. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Installing the FLASH Card 
+
+The multi-media FLASH card should be inserted into the connector as shown, with the gold contacts facing downward. 
+When the card is not installed in the DAB, do not touch the gold contacts. 
+
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Updating the 7K repeater controller firmware 
+
+An EPROM containing new firmware for the 7K has also been included with the DAB. This new firmware provides better 
+integration between the DAB and 7K controller as well as providing new, generic, features to the 7K itself. 
+
+When version 2.04 firmware is installed in the 7K, the 7K will need to be re-initialized before it will work, and the 
+user will need to reload their program into the controller. 
+
+The DAB will work with any version of S-Com firmware that supported the speech synthesizer module, and you may elect 
+to defer the installation of the new controller firmware. 
+
+If your controller is not already at a 2.x version status, and you wish to utilize the new firmware, you will need to contact S-
+Com regarding upgrading other components on the 7K controller board. 
+
+To change the Firmware, use an IC extraction tool to exert equal force on each end of the old EPROM while pulling 
+straight up. Place the old EPROM in conductive foam, and then install the new EPROM as shown in the picture below. 
+Pin one, on the notched end of the EPROM, should be facing towards the rear of the cabinet. 
+
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Using the DAB 
+
+LED Status indicator 
+
+The DAB has a dual color surface mount LED mounted near the board edge near the FLASH card connector. 
+
+If the FLASH card is present upon power up, the dual color LED on the DAB should briefly illuminate green as the FAT file 
+system code initializes its internal variables. 
+If the FLASH card is removed, both LED’s will illuminate and provide a yellowish glow to indicate the absence of the card. 
+When the FLASH card is present, if the LED glows solid Red, with brief flashes of Green, this indicates that the FLASH 
+
+media is not correctly formatted. 
+In normal operation, the Green LED will flicker when the FLASH card is being accessed for reading, and the Red LED will 
+flicker when the FLASH card is being accessed for writing. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Basic use 
+
+In its simplest form, the DAB will mimic the original S-Com speech synthesizer board, and thus it is compatible with any 
+
+version of 7K firmware that supported the speech board. 
+The default speech library included with the DAB includes digitized versions of the original TI speech synthesizer 
+vocabulary. The recordings of the TI speech synthesizer have been low pass filtered to provide a sound which is less 
+harsh than the original speech synthesizer. 
+
+In addition to the original vocabulary, additional words have been recorded by a professional voice over talent. The list of 
+those words can be found in Appendix A. 
+If the user wishes to have custom words and phrases recorded in the same voice they may contact: 
+Sean Caldwell, KF4IWT 
+Phone: 212.898.1222 
+
+http://www.seancaldwell.com/ 
+
+Sean has agreed to contract with the end users of this product for a very reasonable price. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Supported WAV File formats 
+
+For those that wish to create their own WAV files, you will need to know about some specific constraints of exactly what 
+the DAB does and does not support. 
+
+PCM. 8 or 16 bit linear (uncompressed) values, in either mono or stereo format. The maximum supported sample rate is 
+22.05kHz. 
+
+muLaw. This is a logarithmically compressed format which stores 8 bits per sample and expands to approximately 12 bits 
+of precision. Mono and Stereo forms are supported. The maximum supported sample rate is 22.05kHz. 
+
+IMA/DVI ADPCM. Adaptive Delta Pulse Code Modulation essentially stores the difference from one sample to the next. 
+Several different ADPCM methods and subsets are part of the WAV file specification, the one that the DAB supports is 
+specifically this type, with 4 bits per sample, in mono format only. The maximum supported sample rate is 16kHz. 
+
+For the types that support stereo file playback, no attempt is made to “mix” the two channels together and the data stream 
+for only the left channel will be audible. 
+
+If a WAV file is stored using an unsupported compression method, or at too high of a sample rate, the DAB will simply 
+treat the file as a missing file and refuse to play it. 
+
+Things to consider when deciding file storage parameters 
+
+If the user wishes to provide for the highest fidelity playback, then the files should be stored as 16 bit PCM files. Using 
+this storage method consumes two bytes of disk space per sample. 
+
+If the user wishes to conserve as much disk space as possible, then the ADPCM compression method is recommended. 
+Using this storage method, two samples are stored in one byte of disk space. 
+
+The default speech libraries included with the DAB utilize muLaw compression for the TI speech synthesizer recordings, 
+and ADPCM for the live recordings. Both types are sampled at 11.025kHz. 
+
+It was found that applying ADPCM compression to the TI synthesizer recordings resulted in objectionable artifacts when 
+the files were played, but these same artifacts were not nearly as noticeable for the live recordings. 
+
+The practical limit of a narrowband FM voice channel is about 48dB Signal to Noise ratio, so what may sound 
+objectionable in your recording studio, may be inaudible to the end user. 
+
+Sample rates higher than 11.025kHz will be of little practical use when the high frequency rolloff of a normal two-
+way radio is considered. In fact, the end user may find that recordings at 8kHz sample rates are quite 
+satisfactory. 
+
+When making your own live recordings using “built-in” audio hardware in your budget desktop computer, you may find that 
+recording at these lower sample rates results in muddy sounding audio, and come to the conclusion that even a 22.05kHz 
+sample rate just isn’t enough. In this case, the real culprit is the poor performance of the low cost audio card in your 
+computer. Here you have two potential solutions. Either record at a higher sample rate, such as 44.1kHz and then 
+downsample to a lower rate, or buy yourself a professional grade audio card that doesn’t have these same performance 
+limitations. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Recommended editing programs 
+
+Adobe Audition, formally Syntrillium Software’s Cool Edit Pro product, is a preferred tool we use here. 
+
+http://www.adobe.com/ 
+
+SoX – Sound eXchange is a useful tool that claims to be the “swiss army knife of sound processing programs”. This 
+useful utility can convert from just about any sound format to another format, change sample rates, pitch, speed, filter, etc. 
+
+http://sox.sourceforge.net/ 
+
+Goldwave – is a low cost, simple digital audio editor. 
+
+http://www.goldwave.com/ 
+
+Sound Forge – is a higher end digital audio editor, with capabilities similar to Adobe’s Audition product. 
+
+http://www.sonicfoundry.com/ 
+
+There are literally hundreds, if not thousands of software utilities available to edit, and manipulate WAV files, and to cover 
+them all in this manual would be impossible. The short list above represents those we have direct experience with and 
+wouldn’t hesitate to recommend. 
+
+Storing files on the FLASH card 
+
+Multi-Media Card adapters 
+
+A wide range of options exist in both internal and external FLASH card adapters that are compatible with modern desktop 
+computers. One of the most common adapters plugs into the USB port on your computer and allows you to read and 
+write files to one or more FLASH card media types. 
+
+These types of media adapters can generally be purchased new for less than $20 at your local computer store. 
+
+Due to the variety of products available, it is beyond the scope of this manual to provide a tutorial on their use. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+File system requirements 
+
+The Multi-Media Card needs to be formatted with a DOS FAT16 file format. For smaller media types, the default of the 
+format program you utilize may format the card with a FAT12 file system, and you will need to override the default 
+settings. 
+
+Example: 
+
+To format a 16MB card under Windows 2000, open a Command Prompt Window and type: 
+
+FORMAT d: /a:1024 
+
+Where ‘d’ equals the drive letter corresponding to the MMC card, and 1024 equals the size, in bytes, of each cluster. 
+You will be prompted: 
+
+Insert new disk for drive d: 
+and press ENTER when ready... 
+
+Hit [Enter] to continue. 
+
+The type of the file system is FAT. 
+Verifying 15M 
+Initializing the File Allocation Table (FAT)... 
+Volume label (11 characters, ENTER for none)? 
+
+Hit [Enter] to continue. 
+Format complete. 
+15,960,064 bytes total disk space. 
+15,960,064 bytes available on disk. 
+1,024 bytes in each allocation unit. 
+15,586 allocation units available on disk. 
+16 bits in each FAT entry. 
+Volume Serial Number is 10D5-D722 
+
+The key thing here is to select a cluster size for the disk that results in the format program showing a summary of “16 bits 
+in each FAT entry.”. 
+
+The most efficient disk utilization will generally be realized when the smallest possible cluster size is selected, however 
+other factors, such as the increase in the FAT table size may offset any gains that may occur through any increase in disk 
+utilization efficiency. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+File system structure for the Audio Files 
+
+The WAV files need to be stored in a predetermined manner in order on the FLASH card. 
+
+The Root directory needs to contain a “WAV” subdirectory, and the WAV subdirectory needs to contain additional four 
+digit numeric subdirectories corresponding to the “hundreds” portion of the word number to be spoken. Within each of 
+those subdirectories, up to 100 WAV files can be stored. 
+
+The file naming convention for each WAV file simply correlates one-for-one with the word number issued from the 7K 
+command 15. 
+
+For example if you wanted to associate a given WAV file with word 3024 you would name the file “3024.WAV” and store it 
+in the “\WAV\3000\” subdirectory. Similarly word 0007 would be named as “0007.WAV” and stored in the “\WAV\0000\” 
+subdirectory. 
+
+With the exception of the reserved word “0000” and words greater than “9699”, you may utilize as many of the word 
+numbers as you like, up to the limits of the storage space on your FLASH card. 
+
+Special files stored in the root directory 
+
+CONFIG.INI 
+
+This text file contains user settings that need to survive a power failure. It is a simple text file that contains a variable 
+keyword, equals sign, and desired setting for the associated parameter. 
+
+Comment lines can be preceded with a semicolon, or simply contain white space. 
+
+The supported keywords are: 
+
+· BaudRate. Specify any standard baudrate up through 115200 baud. If not specified, the default baudrate of 115200 
+baud will be used. 
+· Password. This is the case sensitive password used to protect access to the serial port. Only the first 8 characters 
+are used, and if not specified, the serial port will not require a password. 
+
+· BusyMsg. Specify a Morse code message to be played when the 7K commands the 7KDAB to play a file during 
+periods when the file system is busy. Only the first 9 characters are used. If not specified, the default message of 
+“BZ” will be used. 
+
+Example file contents: 
+
+; Configuration file for 7K-DAB 
+BaudRate = 38400 
+Password = Secret 
+BusyMsg = WR9ACY/R 
+
+DAB-MAIN.BIN 
+
+This file contains the microcontroller’s firmware. If this file exists, its contents are checked against the current program 
+stored in the microcontrollers own FLASH memory. If they are different, the microcontroller will reprogram itself and 
+reboot to begin execution of the new firmware. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+DAB-BOOT.BIN 
+
+This file contains the small bootstrap loader used to reprogram the microcontroller. If this file exists, its contents are 
+checked against its program storage space in FLASH memory. If they are different, the microcontroller will reprogram this 
+portion of the FLASH memory. 
+
+7K-IMAGE.BIN 
+
+This file contains an image of the 7K controller’s battery backed SRAM. Special commands can be used to save or 
+restore the contents of the controllers programming. 
+
+7K-PATCH.BIN 
+
+This file contains a program image of the 7K firmware patch area. 
+
+Special Words 
+
+Words 9700 through 9799 have been reserved for use by the DAB. When these special words are “spoken” they trigger 
+special things to occur. Some of the functions represent a stand-alone function performed by the DAB and others 
+represent a cooperative effort between the new firmware on the 7K and the DAB. 
+
+9700 – Custom Delay 
+
+When this word is spoken, the word that follows it is used as a delay factor with its time specified in milliseconds. 
+
+For example, “9700 1000” would cause a 1 second silent pause during playback. 
+
+The maximum delay that can be specified is 5000ms. 
+
+9701 – Long word continuation 
+
+With 7K firmware revisions prior to 2.04, there is a hard coded timeout timer in the 7K firmware designed to detect a failed 
+speech board. While the 7K documentation documents this timeout timer as being 5 seconds, in reality a software bug 
+caused it to be 25 seconds. 
+
+In order to allow a DAB user to playback a speech file longer than 25 seconds, the DAB has a timer which artificially 
+signals the 7K that a phrase has been completely spoken even though playback continues. If the next word received is 
+9701, the DAB will continue to play the file already in progress, and approximately 25 seconds later signal the 7K that the 
+phrase has been completely spoken. 
+
+For example, “{PW} 15 9960 5000 9701 9701 9701” would allow 5000.WAV to play for approximately 100 seconds if 
+needed. 
+
+There is no harm in issuing too many 9701 continuation words. If no playback is in process, the DAB will simply 
+handshake with the 7K and move on to the next word. 
+
+This command is not needed with version 2.04 firmware as the keep-alive handshake will occur automatically in 
+the background. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+9702 – Playback Speed Factor 
+
+When this word is spoken, the word that follows it is used as a playback speed multiplier against the playback rate 
+specified in the WAV file header. The word value supplied is specified as a percentage of the playback speed with 0100 
+(100%) being the normal playback rate. 
+
+The value specified can range from 1 to 255%, but if the resulting playback rate exceeds the sample rate limits for the 
+WAV file, the playback rate will be limited to appropriate maximum playback rate. 
+
+The playback speed factor is a static value which defaults to 100% on reset. Whenever a user supplied value is specified, 
+that playback speed factor remains as the new playback rate until either a new factor is specified, or until a reset occurs. 
+
+For example, “{PW}15 9960 9702 0120” would set the playback rate to 120% of normal speed. 
+
+9710 – Play Random File 
+
+When this control word is issued, the next two word values are used as a starting and ending word value for the controller 
+to psuedo-randomly play an audio file within the inclusive range supplied. There is no restriction on the start or end value 
+other than that they need to be in the range of 0001 through 9699. 
+
+Due to the integer math used, and the fact that any pseudo-random number generator has its limitations, the user will find 
+that the span will affect the apparent randomness of the file chosen. Spans that represent a power of two will appear to 
+give the best degree of randomness, but the span may be of any desired size and should still to be sufficiently random for 
+the purposes of this function. 
+
+Some examples: 
+
+{PW} 15 9960 9710 3000 3010 ;play one audio file from the range of 3000 – 3010 
+{PW} 15 9960 9710 1000 4000 ;play one audio file from the range of 1000 -4000 
+{PW} 15 9960 9710 4021 4022 ;play either audio file 4021 or 4022 
+
+Note: This will also select and play CW files included within the selection range, so it is conceivable to mix audio 
+tracks with CW messages if desired. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+9720 – Send Serial Characters 
+
+In order to allow a modem to share the same phone line that the repeater controller is connected to, one or more macros 
+will need to be created in the 7K to cause the modem to answer, or place a call on its own. 
+
+Once special word 9720 is encountered, the decimal of each word encountered after it will be used to determine which 
+ASCII character to send on the serial port. Any word value greater than 0256 will exit the ASCII character mode. 
+
+A null character can be sent by using a word value of 0256. 
+
+A chart of ASCII characters is provided in Appendix B. 
+
+In the following example, two macro’s are created to allow the 7K to answer the phone line. The first macro causes the 
+modem to generate answer tones, and then, after pausing, executes a second macro to cause the 7K to hang up the 
+phone line. The delay in this process ensures that the phone call is not dropped in the process of handing off the call to 
+the modem. 
+
+; Macro 5782 sends “ATA<CR>” to modem, delays for 2 seconds, then triggers macro 5783 
+{PW} 20 5782 {PW} 15 9960 9720 0065 0084 0065 0013 0500 9700 2000 9999 5783 
+
+; Macro 5783 disconnects Autopatch line. 
+{PW} 20 5783 {PW} 83 
+
+If you wanted the repeater to call you back on a separate modem line you could configure macro’s as follows. 
+
+;Macro 5784 disconnects the autopatch line, pauses for two seconds then sends “ATDT5551212<CR>”. 
+{PW} 20 5784 {PW} 83 
+{PW} 29 5784 {PW} 15 9960 9700 2000 9720 0065 0084 0068 0084 0053 0053 0053 0049 0050 0049 0050 0013 0500 
+
+Obviously you will need to replace 555-1212 with the phone number you desire the modem to call. 
+
+9790 – Force 7KDAB Reset 
+
+In the event that the 7KDAB firmware should get “stuck”, it may be possible to issue this word to force the 7KDAB to reset. 
+
+Although the 7KDAB does contain a hardware watchdog that will reset the CPU in the event that the 7KDAB should stop 
+executing as desired, there may be unforeseen situations where the software may appear to operate properly yet fail to 
+respond to the serial port. Because the 7K host interface software operates at an interrupt level, it may be possible for the 
+7KDAB to respond to this command. 
+
+Example: 
+
+{PW} 15 9960 9790 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Notice: 
+
+The following special word commands were included to aid in the overall firmware development process and are 
+somewhat experimental. While they are implemented, they are not supported at this time, but are documented 
+here for the sake of completeness. 
+
+Whenever any of these special word commands are issued, 100% of the 7K’s CPU time is dedicated to executing 
+the associated command. As such, all other controller activity is frozen… meaning any transmitters currently on 
+the air, will stay on the air, no DTMF commands will be possible, etc. 
+
+Issuing these commands with mismatched versions of firmware, may cause either the DAB or the 7K controller 
+to hang indefinitely. 
+
+Full support may be available in a future release. 
+
+9796 – Load 7K Patch file 
+
+This causes a patch file to be loaded into the 7K’s firmware patch area. The user needs to be certain that the patch file 
+exists before issuing this command, or the firmware load will fail ungracefully by resetting the controller. 
+
+9797 – Provide RTC data to DAB 
+
+This will cause the real time clock maintained in the 7KDAB to be set to the current time in the 7K. 
+
+9798 – Load 7K-IMAGE.BIN 
+
+Issuing this word causes the contents of the 7K’s battery backed SRAM to be overwritten with the contents in this file. 
+The image upload takes approximately 25 seconds, after which the 7K will reset. 
+
+Note that this literally will restore the controller to the state that it was in when the save command was executed. Beware 
+of what you ask for… for surely you will find it. 
+
+9799 – Save 7K-IMAGE.BIN 
+
+Issuing this word cause the contents of the 7K’s battery backed SRAM to be written to the FLASH card. The image 
+download takes approximately 5 seconds. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Morse Code Features 
+
+Message File Location 
+
+Text files containing the desired message along with special control sequences to control pitch, speed, and amplitude can 
+be stored in the same directory structure along with the audio files. 
+
+As with the audio files, the Morse code filenames begin with the four digit numeric value of the desired phrase number, 
+but in this case use the file extension “CW”. 
+
+When the 7K controller commands the 7KDAB to play a given word, the 7KDAB will first check to see if a ‘xxxx.WAV’ file 
+exists, and if none is found, then it will check to see if a ‘xxxx.CW’ file exists, and if present will begin playback of the 
+Morse message file. 
+
+Message File contents 
+
+The text file should contain regular ASCII text characters. In addition to letters and numbers, standard punctuation 
+characters are supported. The full list of characters is included in Appendix C. 
+
+Any unsupported characters will be translated to a inter-word delay, or “space” character. 
+
+With version 2.04 firmware installed in the 7K controller, the only limitation to the length of a file is the size of the FLASH 
+memory card. 
+
+As with speech messages, a Morse message playback may be stopped with the {PW} 16 command (available in 2.04 7K 
+firmware), or by issuing the “STOP” command at the serial console prompt. 
+
+Message file control characters 
+
+Unless otherwise specified, the default for a CW message playback is a pitch of 720Hz at 20WPM and one-half maximum 
+amplitude. These values are reset at the beginning of each new message playback. 
+
+Special control character sequences are used to set the pitch, speed, and amplitude of the message and can appear 
+anywhere within a message. The control sequences consist of a single control character followed by numeric digits and 
+terminate with the first non-numeric character. 
+
+Note: If the first desired character after a command sequence is a numeric value the command sequence can be 
+terminated with a forward slash ( / ) character, which in that specific circumstance will not be treated as a inter-
+character delay. 
+
+Pitch 
+
+A character sequence beginning with a tilde ( ~ ) character denotes a change pitch command. The pitch is specified in 
+Hertz, and can range from 1Hz to 5000Hz inclusive. 
+
+Note: The internal frequency resolution is limited to about 600mHz so the specified frequency will vary slightly 
+from the specified value. Also note that precision of the frequency is limited to that of the microprocessor grade 
+crystal. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Speed 
+
+Two different control characters are supported for setting the speed. For normal cadences, the percent sign ( % ) is used 
+to select a speed ranging from 1 to 50 words-per-minute. 
+
+For code practice purposes, the inter-character speed may be supplied separately by using the asterisk ( * ) character to 
+select a speed ranging from 1 to 50 words-per-minute. 
+
+Note: When the ‘%’ character is used, it will set timing values for both the inter and intra character timing values, 
+so when using the ‘*’ control character, the ‘%’ control setting should precede the ‘*’ control setting. 
+
+Amplitude 
+
+A character sequence beginning with a up-caret ( ^ ) character denotes a change in amplitude command. The amplitude 
+is an 8 bit linear value and can range from 0 (off) to 255 (maximum). 
+Sending ‘Prosigns’ 
+To send a prosign such as AR, AS, BT, SK, etc., any number of characters can be enclosed in brackets. The left bracket 
+
+( [ )has the effect of reducing the inter-character delay time to one dit time, and the right bracket ( ] ) has the effect of 
+restoring the inter-character delay time to three dit times. 
+
+Examples: 
+The following message sets the pitch to 880Hz, the amplitude to 128 (or half volume), 20WPM for the character timing, 
+and 13WPM for the inter-character timing, then sends “This is a Morse code message”. 
+
+~880^128%20*13This is a Morse code message 
+
+The following example sends “DE KA9FUR” using a different pitch for each character. Note that the command prior to 
+sending the ‘9’ is terminated using a backslash. 
+
+^255%13~1000D~1100E~1200 K~1300A~1400\9~1500F~1600U~1700R 
+
+The following example shows how to send a message containing a prosign. 
+
+Wx here is sunny [SK] 
+Send 8 dits like this [HH] or this [IIII] or this [EEEEEEEE] 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+7KDAB ‘Busy’ message 
+
+If the 7K attempts to command the 7KDAB to play a file while the 7KDAB is otherwise preoccupied with another action 
+which requires the use of the FLASH file system (such as the user uploading new files to the card), after waiting for 2 
+seconds, the 7KDAB will play a short CW message in place of the desired word. 
+
+By default, the message is simply “BZ”, but can be changed by specifying a message of up to 9 characters. This 
+message is specified in the “CONFIG.INI” file with the keyword ‘BusyMsg’, which is read when the FLASH file system is 
+initialized. 
+
+For situations where the user may have multiple words playing in succession to form a message, the 7KDAB will only play 
+the busy message once during a 30 second time window. 
+
+The intent of this feature is to allow a legal identification to occur during periods of time when file system maintenance is 
+occurring. While the preferred method of handling this situation would be to create a macro that changes any system 
+messages from speech to Morse code, this provides an alternate means of handling this situation. 
+
+Example CONFIG.INI File contents: 
+
+BusyMsg = KA9FUR/R 
+Password = Secret 
+Baudrate = 115200 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Using the Serial Port 
+
+Hardware Interface 
+
+Connecting the DB-9 serial port connector to a PC type computer can be accomplished with a straight through cable. 
+
+The DB-9 connector pinout is as follows: 
+
+1. No Connection 
+2. Transmit Data from DAB 
+3. Received Data to DAB 
+4. Ready to send from PC 
+5. Ground 
+6. DTR from DAB 
+7. Connected to pin 8 
+8. Connected to pin 7 
+9. No Connection 
+When the DAB sees pin 4 go ready, it will start a new command line session. If a password has been set, the DAB will 
+prompt the user for a password. When used with a modem, this pin should be tied to the modem’s carrier detect signal. 
+
+Pin 6 will normally be true, but at the end of a session timeout, or as the result of too many incorrect password attempts, 
+this line will go false for two seconds and then return true. This can be used, with proper modem configuration, to 
+disconnect a dialup caller. 
+
+Modem Wiring: 
+
+DAB (DB9) Modem (DB25) 
+
+22 
+33 
+48 
+57 
+6 20 
+
+Baudrate 
+
+The serial port’s baud rate is determined by a setting in the CONFIG.INI file. Any baud rate up to 115200 can be specified 
+in the configuration file. 
+
+Password 
+
+The session password, if set in the CONFIG.INI file, must be entered correctly before access is given to the DAB’s 
+command line interface. Please note that this password is case sensitive. 
+
+Up to three attempts at entering the correct password are allowed before the DAB drops the DTR signal to disconnect the 
+caller. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Connecting a Modem to the Serial Port 
+
+Since every modem tends to be a bit different, it is not possible to provide a single example that will work for everyone, 
+but we can point out the important steps that need to be taken. 
+
+First, the modem itself needs to be configured as follows: 
+
+· Fixed DTE Speed. Possible command “AT&B1” 
+
+· Normal Carrier Detect (CD) operation. In other words, CD should indicate whether or not a carrier is present. 
+
+Possible command “AT&C1” 
+
+· Normal DTR operation. Modem should disconnect a caller if DTR goes false. Possible command “AT&D2” 
+
+· No Hardware Flow Control. Possible command “AT&H0” 
+
+· Modem should ignore RTS. Possible command “AT&R1”. Alternately, adding a jumper between pins 4 and 5 
+
+on the modem’s DB25 connector may provide the same results. 
+
+· Modem should not send result codes. Possible command “ATQ1” 
+
+· Modem should not echo characters. Possible command “ATE0” 
+
+Most modern modems should allow you to save these settings to EEPROM. Possible command is “AT&W” 
+
+Some modems have dip switches that allow the same sort of power on settings to be accomplished, yet others may 
+require a combination of dip switch and EEPROM settings to be configured. 
+
+The modem can share the telephone line with the repeater controller by creating a couple of simple macro’s. Examples of 
+how to do this were provided a few pages ago under the description of how special word 9720 can be used to send 
+characters to the serial port. 
+
+Modem wiring may also vary slightly, but in general you will need to connect the four signal wires, plus ground as shown 
+on the previous page. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+The Command Line Interface 
+
+Using the Command Line interface (CLI) the user can effect the management of files on the FLASH card. Upon gaining 
+access to the DAB’s command line interface the user is presented with the prompt: 
+
+7kDAB-> 
+
+As a preface to the list of the following commands, it is important to note that the file system software in the DAB is single 
+threaded. This means that while a WAV file is being played, file system management commands are temporarily locked 
+out. 
+
+Similarly, if file management commands are in use, any attempts by the 7K to play a WAV file will fail. In this 
+circumstance, the DAB would simply handshake with the 7K as though the file had been played. 
+
+If the user needs to remotely update files on the DAB during periods of repeater use where speech would be regularly 
+needed, it is suggested that a user macro be written to temporarily change the repeater’s behavior so that speech is not a 
+normal part of the repeater’s operation. 
+
+CD – Change Directory 
+While similar to the change directory command under MS-DOS, this command only accepts a fully qualified path name. 
+When the present working directory is changed, it is reflected in the CLI prompt. 
+Right: 
+
+7kDAB-\>cd \wav\1000 
+7kDAB-\WAV\1000> 
+
+7kDAB-\WAV\4300>cd \wav\1000 
+7kDAB-\WAV\1000> 
+
+Wrong: 
+
+7kDAB-\WAV\4300>cd ..\1000 
+Directory not found 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+DIR – Directory command 
+While similar to the directory command under MS-DOS, this command does not accept any parameters. It simply lists all 
+the files within the present working directory. 
+Example: 
+
+7kDAB-\>dir 
+MMC Card MID: 6, PNM: KODAK , PSN: 428348449 
+
+08/19/2003 14:04 [D----] WAV 
+01/01/2001 01:00 [-----] 82 CONFIG.INI 
+Free Space is: 2160 clusters, 2211840 bytes 
+
+The first line of information shows manufacturer information about the MMC card contained in the card identifier. 
+
+The Manufacturer Identifier (MID) shows the numeric value of the manufacturer of the card. Known values are: 
+
+1 – Infineon 
+2 – Sandisk 
+6 -Hitachi 
+
+NOTE: If you have a card with an identifier not listed above, please let us know so that we can add it to our list. 
+
+The Product Name (PNM) field displays the contents of the six character text field in the card identifier header. The text 
+may include the products model number, or simply the vendor name. 
+
+The Product Serial Number (PSN) field shows the 32 bit serial number of the card. 
+
+The file attributes are shown inside brackets and include: 
+
+· D – Directory 
+· H – Hidden 
+· R – Read Only 
+· S – System 
+· V -Volume 
+
+Other than the directory attribute, the DAB ignores all other file attributes. 
+
+The number of free clusters, which is the smallest disk allocation unit, and the number of free bytes remaining on the 
+FLASH card are displayed at the bottom of the directory listing. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+DEL – Delete File 
+While similar to the delete file command under MS-DOS, this command will only delete files in the present working 
+directory, and will not accept wild cards. 
+Example: 
+
+7kDAB-WAV\4300>del 4380.wav 
+File Deleted 
+
+REN – Rename File 
+While similar to the delete file command under MS-DOS, this command will only rename files in the present working 
+directory, and will not accept wild cards. 
+Example: 
+
+7kDAB-\WAV\5000>ren 5024.wav 5035.wav 
+File 5024.WAV renamed to 5035.WAV 
+
+FIND – Find a file 
+This command’s primary purpose is to show file access time performance information and will display the amount of time 
+needed to find a given file within the file system. 
+The user may find this command interesting to show the performance benefits of smaller vs. larger cluster sizes, and how 
+the ordering of directory entries affects file access times. 
+Example: 
+
+7kDAB-\>find \wav\1000\1000.wav 
+File Found. 22ms elapsed 
+
+7kDAB-\>find \wav\4300\4390.wav 
+File Found. 61ms elapsed 
+
+7kDAB-\>find \wav\4300\4399.wav 
+File not Found. 53ms elapsed 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+SY – Send Y-Modem 
+Allows a file to be sent from the DAB to the users computer via the serial port. 
+Most any popular terminal program written in the past 10-15 years will support Y-Modem file transfers. Since each 
+program is different, please consult that software’s documentation for use of the file transfer capabilities of your terminal 
+emulation program. 
+The filename you wish to download into your computer should be specified on the command line, and needs to exist in the 
+present working directory. 
+Example: 
+
+7kDAB-\>sy config.ini 
+Start your YMODEM Download now. 
+
+At which point you would start your file transfer software. 
+RY – Receive Y-Modem 
+Allows one or more files to be sent to the DAB from the users computer via the serial port. 
+
+Example: 
+
+7kDAB-WAV\4300>ryCCCCC 
+
+The “C”’s shown in the example above are sent periodically by the DAB to signal to the host computer that the DAB 
+wishes to start receiving files using the CRC checksum method. One startup character is sent every 3 seconds, and up to 
+20 attempts are made before timing out. 
+
+LO – Logout 
+This command simply terminates a command line session, and will cause a modem to disconnect. 
+
+REBOOT – Reboot DAB 
+
+This command unceremoniously causes the DAB to reboot. It may be used to take advantage of new settings in the 
+CONFIG.INI file. 
+
+SMHOST – Force Smart Host Present Flag 
+
+This command is needed after a Reboot command is issued in order to simulate a special handshake sequence that 
+occurs when the 7K controller containing Version 2.04 software first powers up. Unless this handshake sequence is seen 
+by the DAB, some of the more advanced features, such as being able to send commands to the 7K, will be locked out. 
+
+Do not issue this command unless your 7K controller has Version 2.04 software. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+STOP – Stop current WAV file playback 
+
+Immediately terminates the playback of any WAV file. This may be useful if the command line user wishes to interrupt the 
+playback of a long WAV file in order to gain access to file management commands. 
+TIME – Display or Set the current Time and Date 
+This command will display or set a time of day clock in the 7KDAB. The time and date maintained within the 7KDAB will 
+
+be used for the time and date stamp on any files written to the FLASH card. 
+Note that when setting the time and date, only basic range checking is performed and that in some instances, the day of 
+month will be set to the maximum number of days for that particular month. 
+
+Note that the time of day maintained within the 7KDAB does not survive a power cycle, and that the clocks 
+accuracy is not specified and may accumulate error of several minutes per day. 
+
+Set time example: 
+
+7kDAB-\>time 13:33:00 
+7kDAB-\> 
+
+Set time and date example: 
+
+7kDAB-\>time 13:33:14 8/23/2007 
+7kDAB-\> 
+
+Display time and date example: 
+
+7kDAB-\>time 
+13:33:15 08/23/2007 
+
+TYPE – Type a file to the console 
+Causes the contents of a file to be echoed to the console serial port. 
+Control-C can be used to abort the file echo. Control-S will pause the file echo, and Control-Q will resume. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Command line interface commands available with 7K firmware 2.04 
+
+#!; -Issuing commands to the 7K 
+Perhaps one of the more appealing additions to the 7K firmware, when used in conjunction with the DAB, is that 
+commands to the 7K can be entered on the serial port. 
+Any digits preceded with an exclamation point will be sent to the 7K and treated as DTMF digits that appear to originate 
+from within the controller. 
+Input lines to the command processor are limited to 80 characters in length, but for long lines a continuation character “\” 
+can be placed at the end of a line to signify more digits for a given command sequence will appear on a subsequent line. 
+Command execution occurs when the Carriage Return character is received. 
+White space characters may be freely inserted if it makes the line more readable. 
+Multiple commands can be entered on one line by using the asterisk (“*”) to signify the end of one command and the start 
+of the next. 
+The octothorpe (“#”) can be used to cancel a command in progress. 
+Any lines proceeded with an octothorpe (“#”) or a semicolon (“;”) are treated as comment lines and are simply ignored. 
+This allows a commented script file to simply be uploaded with a terminal program to the DAB in order to program the 
+controller. 
+If the user desires to use a text file upload method to program the controller, the terminal program should be setup to pace 
+itself either by waiting for a new command line prompt from the DAB to appear, or by adding a delay at the end of each 
+line. 
+Example: 
+
+7kDAB->;Program courtesy tone for Rx1 
+7kDAB->!99 31 9981 9911 76 55 57045912 57051204 
+
+7kDAB->;This is an example of a line continuation 
+7kDAB->!99 31 9981 9911 76 55 57045912\ 
+7kDAB->!57051204 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+RFP – Remote Front Panel 
+
+The remote front panel command allows real time viewing of the controller activity via the serial port. When this command 
+is invoked a representation of the controller’s front panel, along with some additional data is displayed on your screen. 
+
+A group of three reverse video spaces is used to form a block to denote an indicator that is ‘lit’ whereas a lower case ‘o’ is 
+used to indicate an indicator which is ‘dark’. 
+
+When speech playback is active, the current audio track being played will be shown in the upper right hand corner of the 
+screen. 
+
+The lower part of the screen is set aside to display decoded DTMF digits as they arrive, and to show where those digits 
+are being received from. A new line is started each time a command is terminated with an asterisk (*) or octothorpe (#), 
+or if the DTMF source changes. 
+
+If for some reason the screen becomes garbled due to a missed character, you can type the letter “R” to refresh the 
+screen. When the screen is repainted, the historical DTMF digit information of the screen is lost. 
+
+The display mode can be exited at any time by hitting the escape key. 
+
+Hit [ESC] to exit or 'R' to refresh Playing: 1027
+
+ COR1 CTCSS1 COR2 CTCSS2 COR3 CTCSS3 PTT1 PTT2 DTMF BZIN BZOUT RING ENC 
+
+XXXXXX o o o o XXX o o o XXX o XXX
+
+ IN1 IN2 IN3 IN4 IN5 IN6 OUT1 OUT2 OUT3 OUT4 OUT5 OUT6 OUT7 
+o o XXX o o o o o o o XXX o o
+
+ USR1 USR2 USR3 USR4 USR5 USR6 USR7 
+o o o XXX o o o 
+
+Rx1 856* 
+Rx3 80 
+Rx1 8754* 
+LL 9979500* 
+LL 99717* 
+LL 99705* 
+LL 9983* 
+Rx1 8713* 
+
+Indicators in addition to those already provided on the real front panel include: 
+
+· RING Phone line ringing status 
+· ENC CTCSS Encoder output status 
+· USR1-7 Indicate the current values of user function soft switches 92 through 98 
+
+Real time updates are not possible during DAB audio playback due to the fact that during playback, the interface between 
+the 7K and DAB is dedicated to handshaking between these two units in a way that is compatible with the original S-COM 
+speech synthesizer module. Information regarding controller operation can only be sent to the DAB during periods when 
+the interface is otherwise available and I/O status change information will be sent to the DAB once speech playback has 
+completed. 
+
+The DAB firmware utilizes VT100 terminal commands to provide a fast and efficient means of updating the screen, and 
+thus the user needs to utilize a suitable terminal or terminal emulation program to accomplish this. The list of software 
+companies that provide terminal emulation and file transfer software is quite extensive and beyond our ability to provide a 
+list of those that do work correctly vs. those that do not. However, limited testing of freeware, shareware, and commercial 
+programs clearly demonstrate that “you get what you pay for” in terms of faithful emulation. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+“Hyperterm” users will need to visit the Hilgraeve website http://www.hilgraeve.com/ and download a current version of 
+this free terminal emulator in order for all characters to be properly displayed. For many years, Microsoft has bundled 
+Hilgraeve’s terminal emulation software with Windows, and those bundled versions have some issues with some of the 
+commands that the DAB uses. Hilgraeve’s website is silent as to when the bug(s) related to the screen redraw functions 
+were addressed, but their version 6.3 appears to work fine. 
+
+Hilgraeve’s product is the only “free” emulator known at this time to provide true VT100 emulation and YMODEM file 
+transfer capabilities. If you find other programs that work, please let us know. 
+
+SCRIPT – Execute text file to program the 7K controller 
+
+Issuing the script command followed by a text file’s name will echo the contents of that file to the console, and any lines 
+beginning with an exclamation point (‘!’) will be parsed and sent to the 7K controller in the same manner that a command 
+may be directly executed from the command line. Just as with manually entered commands, long lines can be continued 
+on the next line by ending the line with a back slash (‘\’). 
+
+Lines beginning with an exclamation point are limited to 80 non-white space characters. Lines exceeding this length will 
+prematurely terminate the file transfer to the 7K and display an error message. 
+
+Keep in mind that the file will be transmitted as quickly as the 7K can receive it and if command responses are enabled 
+could cause the 7K’s 400 byte message buffer to wrap resulting in some messages being lost or corrupted. 
+
+Also keep in mind that the while this command is executing, no speech words can be played and will cause the 7K’s 
+message system to stall and time out each individual word or phrase. Therefore, it is advised that any enabled command 
+responses not utilize speech responses. 
+
+Control-C can be used to abort the file execution. Control-S will pause execution, and Control-Q will resume. 
+
+Example: 
+
+7kDAB-\>script test.scr 
+
+;play warble tones 
+!99 15 9900 40 40 9910 5850 74 55 10 20 10 20 10 20 
+
+;play morse ditty 
+!99 15 9900 40 40 54 14 28 14 40 14 14 
+
+7kDAB-\> 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Firmware Update Procedure. 
+
+The product firmware can be updated by placing a new firmware image file in the root directory of the MMC card. This 
+can be accomplished in one of two ways. 
+
+MMC card reader/writer attached to your computer running Windows 
+
+It is beyond the scope of this manual to provide a tutorial on the use of specific computer peripherals, as well as to make 
+
+specific brand name recommendations for these third party devices. 
+Your local computer store, or your favorite on-line retailer, should have these products readily available, although you may 
+find the term “Secure Digital” more widely used than “MultiMedia Card” or “MMC”. The two technologies are similar, with 
+Secure Digital being an extension of the MultiMedia Card standard. Secure Digital cards are slightly thicker, and cannot 
+be used in 7KDAB boards prior to board revision “F”, but a Secure Digital card reader should accept a MMC card. 
+
+1.) Download the new firmware binary file to a temporary storage location on your computer. 
+2.) Remove the MMC card from the DAB and place it in your FLASH card drive. 
+2.) Copy the firmware binary file into the root directory on the card. 
+3.) After the file copy has completed, wait at least 30 seconds before removing the card from the drive to allow the system 
+
+to flush any unwritten data to the disk. 
+4.) Re-insert the card into the DAB 
+5.) When the card is re-inserted and power is applied, you will see the message "Updating FLASH program", followed by 
+
+a reset message indicating a software reboot. You should note that the power on message indicates that the new version 
+of firmware is running. 
+6.) Once the firmware update is complete, you may delete the firmware binary file from the MMC card. 
+
+Use your terminal emulator to transfer a file to the MMC card 
+
+1.) Download the new firmware binary file to a temporary storage location on your computer. 
+2.) Using a terminal emulator, issue the "RY" command at the "7kDAB> prompt. 
+3.) Within your terminal emulator, initiate a Y-MODEM file transfer of the new binary firmware file. You only have 30 
+
+seconds to start the file transfer or the DAB will timeout and cancel the file transfer. 
+4.) When the file transfer is complete, issue the "reboot" command at the command prompt. 
+5.) When the DAB reboots, you will see the message "Updating FLASH program", followed by a reset message indicating 
+
+a software reboot. You should note that the power on message indicates that the new version of firmware is running. 
+6.) Once the firmware update is complete, you may delete the firmware binary file from the MMC card. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Appendix A Library Contents 
+
+7K SSM Words 
+
+Words 0001 through 0597 and 4097 through 4388 are simply recorded versions of the S-COM SSM library using the 
+latest speech ROM versions. Please refer to the appropriate S-COM documentation for a list of those words. 
+
+In addition to the standard library two additional synthesized words are included in the library: 
+
+· 4389 – Milwaukee 
+· 4390 – Repeater (a pleasant sounding version) 
+
+Sean Caldwell Words 
+
+A 1000 
+A.M. 1001 
+A.P.U. 1002 
+A.T.V. 1003 
+abeam 1004 
+Abel (able) 1005 
+Abington 1006 
+able 1007 
+abnormal 1008 
+abort 1009 
+about 1010 
+above 1011 
+accelerate 1012 
+accelerated 1013 
+access 1014 
+acknowledge 1015 
+action 1016 
+activated 1017 
+activating 1018 
+active 1019 
+activity 1020 
+Adam 1021 
+address 1022 
+adjust 1023 
+advise 1024 
+advisory 1025 
+aerial 1026 
+affirmative 1027 
+aft 1028 
+afternoon 1029 
+again 1030 
+ahead 1031 
+air 1032 
+aircraft 1033 
+airforce 1034 
+airport 1035 
+airspeed 1036 
+Alabama 1037 
+
+alarm 1038 
+alarmed 1039 
+Alaska 1040 
+Albany 1041 
+Alberta 1042 
+Albuquerque 1043 
+alert 1044 
+all 1045 
+Allenton 1046 
+Allentown 1047 
+aloft 1048 
+alpha 1049 
+alternate 1050 
+altimeter 1051 
+altitude 1052 
+always 1053 
+amateur 1054 
+amateurs 1055 
+amber 1056 
+ambulance 1057 
+America 1058 
+American 1059 
+amp 1060 
+amplifier 1061 
+amps 1062 
+an 1063 
+analog 1064 
+Anchorage 1065 
+and 1066 
+Angeles 1067 
+anger 1068 
+angle 1069 
+Annapolis 1070 
+announcement 1071 
+answer 1072 
+antenna 1073 
+Appalachain 1074 
+Apple 1075 
+
+Appleton 1076 
+approach 1077 
+approaches 1078 
+April 1079 
+are 1080 
+area 1081 
+ARES (AIR-ees) 1082 
+Arizona 1083 
+Arkansas 1084 
+armed 1085 
+army 1086 
+arrival 1087 
+as 1088 
+ask 1089 
+Aspen 1090 
+assign 1091 
+assistance 1092 
+association 1093 
+astro 1094 
+at 1095 
+Atlanta 1096 
+Atlantic 1097 
+attempt 1098 
+attention 1099 
+audio 1100 
+August 1101 
+Augusta 1102 
+aural 1103 
+Austin 1104 
+authorized 1105 
+auto 1106 
+automatic 1107 
+autopatch 1108 
+autopilot 1109 
+auxiliary 1110 
+available 1111 
+ave 1112 
+avenue 1113 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+average 
+B 
+back 
+backbone 
+backhaul 
+backup 
+bad 
+baker 
+Baltimore 
+band 
+Bangor 
+bank 
+Barbara 
+barometric 
+bars 
+Base 
+bath 
+Baton Rouge 
+battery 
+baud 
+Bavarian 
+bay 
+beacon 
+beam 
+bearing 
+Beautiful 
+Beaverton 
+beer 
+bell 
+below 
+Bernadino 
+between 
+big 
+Billings 
+Birmingham 
+Bismarck 
+Black 
+Bloomsburg 
+blowing 
+Blue 
+bluff 
+Boeing 
+Boise 
+bolt 
+boost 
+booster 
+Boston 
+bound 
+box 
+bozo 
+
+Bradford 
+brake 
+braking 
+branch 
+bravo 
+break 
+breaker 
+brew 
+Bridge 
+Bridgeport 
+Bristol 
+British 
+broadcast 
+broaden 
+Broadway 
+broken 
+Bronx 
+Brookfield 
+brown 
+Bryn Mawr 
+Bucks 
+Buffalo 
+building 
+burlington 
+busy 
+button 
+by 
+byte 
+C 
+C.T.C.S.S. 
+C.W. 
+cabin 
+calibrate 
+calibration 
+California 
+call 
+calling 
+callsign 
+calm 
+Cambridge 
+Camelback 
+Canada 
+Canadian 
+cancel 
+capacitance 
+capacitor 
+Cape May 
+car 
+Carbondale 
+cargo 
+
+Carlos 
+Carmel 
+Carolina 
+carriage 
+carrier 
+Carson City 
+case 
+cast 
+cat 
+cathode 
+caution 
+Cedar_Rapids 
+Cedarburg 
+ceiling 
+Celsius 
+center 
+centi (CEN-tee) 
+centigrade 
+central 
+Cerro 
+Chambersburg 
+change 
+changeover 
+channel 
+charge 
+Charleston 
+Charlie 
+Charlotte 
+check 
+Chester 
+Cheyenne 
+Chicago 
+Chippewa_Falls 
+choice 
+circuit 
+Circus 
+cities 
+city 
+class 
+Claude 
+clear 
+clearance 
+climb 
+clinch 
+clock 
+close (adjective) 
+close (verb) 
+closed 
+Closure 
+clown 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+club 
+Coast 
+co-ax 
+code 
+coil 
+cold 
+college 
+Colorado 
+Columbia 
+Columbus 
+com 
+combiner 
+come 
+command 
+common 
+communication 
+Communications 
+compact 
+Compact_Flash 
+complete 
+Complex 
+compressor 
+computer 
+Concord 
+Concord (alternate) 
+condition 
+configuration 
+Conflicts 
+Conifer 
+connect 
+Connecticut 
+connector 
+constant 
+consumption 
+contact 
+contactor 
+control 
+controller 
+converging 
+converter 
+cool 
+cooling 
+copper 
+correct 
+county 
+course 
+coverage 
+cowl 
+craft 
+crane 
+
+Creek 
+crescent 
+cross 
+crosswind 
+crystal 
+Crystal Lake 
+Culvert 
+current 
+cycle 
+cylinder 
+D 
+D.T.M.F. 
+D.V.R. 
+damage 
+danger 
+danger, alternate 
+dark 
+data 
+date 
+Davenport 
+day 
+days 
+Dayton 
+December 
+decimal 
+decrease 
+decreasing 
+default 
+deflector 
+degree 
+degrees 
+dehydrator 
+de-ice 
+Delaware 
+delay 
+Delray 
+delete 
+delta 
+deluxe 
+Denver 
+department 
+departure 
+depleted 
+depth 
+Des Moines 
+Desert 
+detect 
+detected 
+detector 
+Detroit 
+
+deviation 
+device 
+dial 
+dialed 
+dialing 
+did 
+Diego 
+diesel 
+digital 
+dinner 
+dip 
+direct 
+direction 
+directory 
+disable 
+disabled 
+disarm 
+discharge 
+disconnect 
+dish 
+dismal 
+dispatcher 
+display 
+divide 
+divided 
+do 
+dog 
+Doh! 
+door 
+doors 
+Dot 
+double 
+Dover 
+down 
+downlink 
+downwind 
+drive 
+driver 
+drizzle 
+DuBois 
+Dubuque 
+duhhhh 
+Duluth 
+dump 
+duplexer 
+dust 
+dynamic 
+E 
+E.H.F. 
+E.M.S. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+E.T.A. 
+Eagles_Peak 
+earth 
+east 
+easy 
+Eau_Claire 
+echo 
+Eckley 
+edison 
+Edmonton 
+efficiency 
+Egg_Harbor 
+eight 
+eighteen 
+eighth 
+eighty 
+electric 
+electrician 
+electricity 
+elevation 
+eleven 
+Elizabeth 
+Email 
+emergency 
+empty 
+enable 
+enabled 
+end 
+endless 
+energy 
+engage 
+engine 
+engineering 
+enter 
+equal 
+equipment 
+erase 
+erased 
+Erie 
+error 
+escape 
+estimated 
+evacuate 
+evacuation 
+evening 
+event 
+every 
+evil 
+exciter 
+exclusion 
+
+exist 
+existing 
+exit 
+expect 
+exterior 
+external 
+extreme 
+F 
+F.M. 
+fade 
+fail 
+failed 
+failure 
+fairport 
+False 
+Fan 
+Fancy Hill 
+farad 
+Farenheit 
+Fargo 
+Farm 
+fast 
+faster 
+fat 
+fault 
+February 
+Federal 
+feedline 
+feet 
+female 
+femto (phem-to) 
+Fernando 
+fest 
+Festival 
+field 
+fifteen 
+fifth 
+fifty 
+filament 
+file 
+filed 
+final 
+fire 
+first 
+Fish 
+five 
+flag 
+flair 
+flame 
+flameout 
+
+flaps 1514 
+flash 
+flat 1516 
+flight 1517 
+flight_watch 1518 
+flood 1519 
+flooded 
+floor 1521 
+Florence 1522 
+Florida 1523 
+flow 1524 
+fog 
+Fond_Du_Lac 1526 
+For 1527 
+Forest 1528 
+Forever 1529 
+Fork 
+Forkston 1531 
+Fort 1532 
+forty 1533 
+forward 1534 
+four 
+fourteen 1536 
+fourth 1537 
+fox 1538 
+foxtrot 1539 
+Francisco 
+Frankenmuth 1541 
+(Michigan) 
+Frankfort 1542 
+Franklin 1543 
+Fredericton 1544 
+free 
+freedom 1546 
+Freeport 1547 
+freeze 1548 
+freezing 1549 
+French 
+frequency 1551 
+Fresno 1552 
+Friday 1553 
+friendly 1554 
+from 
+front 1556 
+fuel 1557 
+full 1558 
+fun 1559 
+function 
+fuse 1561 
+G 1562 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+galley 
+gallons 
+gap 
+Garden 
+gas 
+gate 
+Gateway 
+gauge 
+gear 
+generate 
+Generator 
+Geneva 
+George 
+Georgia 
+Germantown 
+get 
+Gilbert 
+Glendale_Heights 
+glide 
+go 
+gold 
+golf 
+good 
+good afternoon 
+good evening 
+good morning 
+good night 
+good_bye 
+grain 
+Grand_Rapids 
+gray 
+greater 
+greater than 
+Green 
+Green_Bay 
+Greenwich (GREN-itch) 
+grid 
+ground 
+group 
+gun 
+gundish 
+gust 
+gusting_to 
+H 
+H.F. 
+hail 
+half 
+Halifax 
+ham 
+Hamburg 
+
+Hamfest 1613 
+Hamvention 1614 
+Hancock 
+hang 1616 
+Happy_Holidays 1617 
+hard 1618 
+hardline 1619 
+Harrisburg 
+Harry 1621 
+Hartford 1622 
+has 1623 
+have 1624 
+Hawaii 
+haze 1626 
+head 1627 
+heading 1628 
+heat 1629 
+heating 
+heavy 1631 
+Helena 1632 
+Heliax 1633 
+hello 1634 
+help 
+Henry 1636 
+here 1637 
+hertz 1638 
+Hicks 1639 
+high 
+higher 1641 
+highway 1642 
+hill 1643 
+hold 1644 
+home 
+Honolulu 1646 
+horizontal 1647 
+hospital 1648 
+hot 1649 
+hotel 
+hour 1651 
+hours 1652 
+Houston 1653 
+how 1654 
+HTTP colon backslash 
+backslash w w w dot 
+hundred 1656 
+hunt 1657 
+hurricane 1658 
+I 1659 
+I.R.L.P. 
+ice 1661 
+
+icing 
+Ida 
+Idaho 
+identification 
+identifier 
+identity 
+idle 
+if 
+ignite 
+ignition 
+Illinois 
+immediate 
+immediately 
+in 
+inactive 
+inbound 
+inch 
+increase 
+increasing 
+India 
+Indiana 
+Indianapolis 
+indicate 
+indicated 
+Indicator 
+Indigo 
+indoor 
+inductor 
+Industries 
+inflight 
+information 
+inner 
+input 
+inside 
+inspect 
+inspector 
+instruction 
+instrument 
+instruments 
+intakes 
+interface 
+Internet 
+interrupt 
+interstate 
+interval 
+Intranet 
+intruder 
+invalid 
+Iowa 
+iron 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+is 
+Island 
+isolation 
+it 
+Item 
+its 
+J 
+Jackson 
+Jacksonville 
+Janesville 
+January 
+Jefferson 
+jig 
+Joaquin 
+John 
+Join 
+Joint 
+Juliet 
+July 
+junction 
+June 
+Juneau 
+just 
+K 
+K A 9 F U R 
+Kansas 
+Kellysville 
+Kenley 
+Kenosha 
+Kentucky 
+kerchunk 
+Kewaunee 
+key 
+Keyboard 
+kicks 
+kill 
+killer 
+kilo (KEE-lo) 
+king 
+knob 
+knots 
+L 
+Labrador 
+LaCrosse 
+Lafayette 
+Lake 
+Lambs 
+land 
+landing 
+Lansing 
+
+large 
+Las Vegas 
+last 
+Lauderdale 
+launch 
+league 
+leak 
+lean 
+leave 
+left 
+leg 
+less than 
+let 
+level 
+Lexington 
+lick 
+lid 
+light 
+lights 
+Lima 
+limit 
+Lincoln 
+line 
+link 
+list 
+listen 
+little 
+Little Rock 
+load 
+localizer 
+lock 
+locked 
+log 
+logic 
+Loma Prieta 
+long 
+loop 
+Los 
+Los Angeles 
+Louisiana 
+Love 
+low 
+lower 
+Luis 
+lunch 
+Lycoming 
+Lynchburg 
+M 
+machine 
+Macon 
+
+macro 
+Madison 
+magnetos 
+main 
+maintain 
+make 
+male 
+man 
+Manchester 
+Manhattan 
+Manitoba 
+Manitowoc 
+manual 
+many 
+March 
+Marine 
+Marines 
+mark 
+marker 
+Marquette 
+Maryland 
+Massachusetts 
+mast 
+master 
+May 
+Mayberry 
+mayday 
+me 
+mean 
+measure 
+medical 
+medium 
+meet 
+meeting 
+mega 
+Memphis 
+Menomonee_Falls 
+mercury 
+message 
+messages 
+meter 
+metering 
+meters 
+Mexico 
+Michigan 
+micro 
+microphone 
+microwave 
+mid 
+middle 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+midpoint 
+Mid-Wisconsin 
+mike 
+mile 
+miles 
+Military 
+mill 
+milli (MILL-ee) 
+million 
+Milwaukee 
+min 
+mini 
+Minneapolis 
+Minnesota 
+minus 
+minute 
+minutes 
+Mississippi 
+Missouri 
+mist 
+mixture 
+mobile 
+mode 
+modem 
+moderate 
+modify 
+modulation 
+module 
+Moline 
+monday 
+monitor 
+mono 
+Monroe 
+Montana 
+Montgomery 
+month 
+monthly 
+Montpelier 
+more 
+more than 
+morning 
+moron 
+moron , whoop whoop 
+moron alert 
+Morse 
+motor 
+Mount 
+mountain 
+mouse 
+move 
+
+moving 
+much 
+my 
+N 
+N 3 K Zed 
+N 3 K Z 
+Nan 
+Nancy 
+nano (NAN-oh) 
+Naperville 
+Narrows 
+Nashville 
+National 
+Navy 
+Near 
+Nebraska 
+negative 
+net 
+network 
+neutral 
+Nevada 
+New 
+New Hampshire 
+New Jersey 
+New Mexico 
+New Orleans 
+New York 
+Newark 
+Newfoundland 
+Newtown 
+next 
+night 
+nine 
+niner 
+nineteen 
+ninety 
+ninth 
+no 
+nominal 
+none 
+noon 
+Norfolk 
+Normal 
+Noroeste 
+North 
+North Carolina 
+North Dakota 
+North_Prarie 
+northeast 
+northwest 
+
+Norton 
+not 
+notice 
+Nova Scotia 
+November 
+now 
+number 
+numbers 
+Nunavut 
+O 
+Oak 
+Obispo 
+oboe 
+obscured 
+ocean 
+o'clock 
+October 
+of 
+off 
+oh 
+Ohio 
+ohm 
+ohms 
+oil 
+okay 
+Oklahoma 
+old 
+Olympia 
+Omaha 
+Omni 
+on 
+one 
+only 
+Ontario 
+Opaca 
+open 
+operate 
+operational 
+operator 
+optical 
+or 
+Orange 
+Ord 
+order 
+Oregon 
+originate 
+oscar 
+Oshkosh 
+other 
+Ottawa 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+ouch 2012 
+our 2013 
+out 2014 
+outdoor 
+outer 2016 
+output 2017 
+outside 2018 
+over 2019 
+overcast 
+overload 2021 
+overlook 2022 
+overspeed 2023 
+Owego (oh-WEE-go) 2024 
+Oxford 
+P 2026 
+P.L. 2027 
+P.L.L. 2028 
+P.M. 2029 
+pacific 
+pad 2031 
+page 2032 
+pair 2033 
+panther 2034 
+papa 
+Parade 2036 
+parallel 2037 
+Parking 2038 
+partially 2039 
+pass 
+passed 2041 
+password 2042 
+patch 2043 
+path 2044 
+Paul 
+Peak 2046 
+pearl 2047 
+pellets 2048 
+pending 2049 
+Penn 
+Pennsylvania 2051 
+Penobscot (penn-OBscot) 
+2052 
+Peoria 2053 
+per 2054 
+percent 
+period 2056 
+Perry 2057 
+Peter 2058 
+phase 2059 
+Philadelphia 
+
+Phoenix 
+phone 
+pick 
+pico (PEE-ko) 
+Pierre 
+pilot 
+pine 
+pink 
+plan 
+plant 
+plate 
+play 
+please 
+plus 
+point 
+polar 
+polarization 
+polarized 
+police 
+pond 
+poor 
+port 
+portable 
+Portland 
+position 
+pots 
+pound 
+power 
+powerhouse 
+preamplifier 
+press 
+pressure 
+Prince Edward 
+Princeton 
+priority 
+probe 
+program 
+Propane 
+props 
+Providence 
+Provo 
+pull 
+pulse 
+pumps 
+Purple 
+push 
+put 
+Q 
+Quad 
+quarter 
+
+Quebec 
+Quebec, French 
+Queen 
+question 
+R 
+R.F. 
+R.P.U. 
+RACES (RAY-sees) 
+Racine 
+radar 
+radial 
+radio 
+radios 
+Rail 
+rain 
+raise 
+Raleigh 
+range 
+RATE 
+Reading (RED-ing) 
+reading (REED-ing) 
+ready 
+rear 
+receive 
+receiver 
+recorded 
+recorder 
+Red 
+reflected 
+refueling 
+regenerate 
+relay 
+release 
+remark 
+remote 
+repair 
+repeat 
+repeater 
+report 
+request 
+rescue 
+reset 
+resistance 
+resistor 
+response 
+return 
+reverse 
+Rhode Island 
+rich 
+Richfield 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Richland 
+Richmond 
+Ridge 
+rig 
+right 
+ring 
+river 
+road 
+Roanoke 
+Rochester 
+Rockford 
+Rocky 
+Rocky Ridge 
+Rodman 
+Roger 
+rollout 
+Romeo 
+room 
+Route 
+Roxboro 
+RS232 
+run 
+running 
+runway 
+S 
+S.Comm 
+S.H.F. 
+S.S.B. 
+S.T.L. 
+S.W.R. 
+Sacramento 
+safe 
+Saint 
+Salem 
+Salinas 
+Salt Lake City 
+San 
+San Luis Obispo 
+sand 
+Sandy 
+Santa Fe 
+Santiago 
+Saskatchewan 
+Saturday 
+Savanna 
+save 
+scale 
+scatter 
+scattered 
+Schaumburg 
+
+schedule 
+scheduled 
+scheduler 
+school 
+Science 
+Scranton 
+screen 
+Sea 
+search 
+Seattle 
+second 
+seconds 
+security 
+select 
+selected 
+selector 
+self-destruct 
+semaphore 
+send 
+sensor 
+sent 
+September 
+sequence 
+serial 
+service 
+set 
+seven 
+seventeen 
+seventh 
+seventy 
+severe 
+sewage 
+seymour 
+Sheboygan 
+Shoals 
+short 
+shortwave 
+showers 
+shut 
+shuttle 
+side 
+Sierra 
+sighting 
+sigmet 
+sign 
+signal 
+silver 
+simulcast 
+single 
+Sioux Falls 
+
+Site 
+six 
+sixteen 
+sixteenth 
+sixth 
+sixty 
+Skokie 
+Sky Warn 
+sleet 
+slope 
+slower 
+small 
+S-meter 
+smoke 
+snow 
+solar 
+sound 
+South 
+South Carolina 
+South Dakota 
+South Mountain 
+southeast 
+southern 
+southwest 
+space 
+spare 
+speak 
+Speaker 
+special 
+speed 
+spill 
+spirit 
+spoil 
+spoilers 
+spray 
+Springfield 
+square 
+squawk 
+squawking 
+squelch 
+St. Paul 
+stabilize 
+stabilizer 
+stable 
+stall 
+standby 
+star 
+starboard 
+start 
+State 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+station 
+stationary 
+status 
+stereo 
+stern 
+stop 
+storm 
+street 
+strength 
+strobe 
+structure 
+studio 
+Sugar 
+Summerfest 
+Sunday 
+sunset 
+Superior 
+supply 
+Sussex 
+Swapfest 
+switch 
+switched 
+switching 
+Sword 
+sysop 
+system 
+T 
+T.R.L. 
+T.S.L. 
+Tahoe 
+tall 
+Tallahassee 
+tango 
+tank 
+Tare 
+target 
+Tassajera 
+taxi 
+teen 
+telemetry 
+telephone 
+temperature 
+ten 
+Tennessee 
+tenth 
+terminal 
+terminate 
+terminated 
+Territories 
+Territory 
+
+test 
+Texas 
+than 
+thank-you 
+that 
+thaw 
+the (long E) 
+the (short E) 
+their 
+then 
+thermal 
+thin 
+thinly 
+thirthird 
+thirteen 
+thirtieth 
+thirty 
+this 
+this_is 
+This_is_the 
+Thompson 
+thousand 
+three 
+thunder 
+Thursday 
+time 
+time_out 
+timer 
+times 
+today 
+Tollsville 
+tomorrow 
+tone 
+tonight 
+too 
+tool 
+Topeka 
+tornado 
+Toronto 
+total 
+touch 
+touchdown 
+Towanda 
+tower 
+town 
+track 
+tracking 
+trade 
+traffic 
+
+transfer 
+transformer 
+transition 
+transmit 
+transmitter 
+treatment 
+Trenton 
+trigger 
+trim 
+trip 
+tripped 
+true 
+trunk 
+try 
+tube 
+Tuesday 
+Tug 
+Tunnel 
+Turbulence 
+TURN 
+turquoise 
+twelfth 
+twelve 
+twentieth 
+twenty 
+two 
+TYPE 
+U 
+U.P.S. 
+UHF 
+Uncle 
+under 
+unicom 
+uniform 
+Union 
+unit 
+United States 
+University 
+unlimited 
+unlock 
+until 
+Up 
+Uplink 
+use (noun) 
+use (verb) 
+used 
+Utah 
+Utility 
+V 
+V.F.R. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+V.H.E. 
+V.H.F. 
+V.O.R. 
+V.S.W.R. 
+Vaca 
+vacuum 
+Valley 
+Valley Forge 
+valve 
+variable 
+VCO 
+vector 
+vectors 
+Vera 
+verify 
+Vermont 
+version 
+Vertical 
+very 
+Victor 
+Victoria 
+video 
+Violet 
+Virginia 
+Virginia Beach 
+visibility 
+visual 
+voice 
+Voltage 
+volts 
+volume 
+vortac 
+W 
+W 9 H H X 
+W R 3 I R S 
+W.W.V. 
+W.W.W. 
+wait 
+wake 
+warning 
+Warren 
+Washington 
+waste 
+watch 
+
+water 
+Waterdale 2506 
+Waterford 2507 
+Watt 2508 
+watts 2509 
+Waukesha 
+Wausau 2511 
+wave 2512 
+way 2513 
+we 2514 
+weather 
+Web 2516 
+Wednesday 2517 
+week 2518 
+weekday 2519 
+weekend 
+Weekly 2521 
+welcome 2522 
+well 2523 
+Welsh 2524 
+West 
+West Virginia 2526 
+what 2527 
+whiskey 2528 
+white 2529 
+Wichita 
+Wide 2531 
+Wilco 2532 
+Wilkes-Barre 2533 
+will 2534 
+William 
+Williamsport 2536 
+Willie 2537 
+Wilmington 2538 
+win 2539 
+wind (noun) 
+window 2541 
+windows 2542 
+windspeed 2543 
+Winnebago 2544 
+Wisconsin 
+Wisconsin_Interstate_N 
+etwork 
+2546 
+with 2547 
+
+within 2548 
+without 2549 
+Wolf 2550 
+work 2551 
+working 2552 
+Works 2553 
+World 2554 
+Wrist 2555 
+wrong 2556 
+Wyoming 2557 
+X 2558 
+X-ray 2559 
+Y 2560 
+yada_yada_yada 2561 
+Yagi 2562 
+yankee 2563 
+yard 2564 
+year 2565 
+Yearly 2566 
+Yellow 2567 
+yes 2568 
+yesterday 2569 
+Ynez 2570 
+Yoke 2571 
+York 2572 
+you 2573 
+Young 2574 
+your 2575 
+yours 2576 
+you've 2577 
+Yukon 2578 
+Z 2579 
+Zebra 2580 
+zed 2581 
+zero 2582 
+zone 2583 
+Zulu 2584 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Test Tones 
+
+Duration Tone dBFS 
+5000 2 Sec. 1kHz 0 
+5001 2 Sec. 1kHz -3 
+5002 2 Sec. 1kHz -6 
+5003 2 Sec. 300Hz 0 
+5004 2 Sec. 300Hz -3 
+5005 2 Sec. 300Hz -6 
+5006 2 Sec. 2kHz 0 
+5007 2 Sec. 2kHz -3 
+5008 2 Sec. 2kHz -6 
+5010 280ms Stardust -6 
+5011 385ms Duncecap -6 
+5012 200ms Piano Chord -6 
+5020 900ms MF Sequence -6 
+5021 2 Sec. US Dialtone -6 
+5022 1 Sec. UK Ringback -6 
+5023 2 Sec. US Ringback -6 
+5024 500ms US Busy Tone -6 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Appendix B ASCII Character Chart 
+
+Dec 
+0 
+1 
+2 
+3 
+4 
+6 
+7 
+8 
+9 
+11 
+12 
+13 
+14 
+16 
+17 
+18 
+19 
+21 
+22 
+23 
+24 
+26 
+27 
+28 
+29 
+31 
+Char 
+^@ 
+^A 
+^B 
+^C 
+^D 
+^E 
+^F 
+^G 
+^H 
+^I 
+^J 
+^K 
+^L 
+^M 
+^N 
+^O 
+^P 
+^Q 
+^R 
+^S 
+^T 
+^U 
+^V 
+^W 
+^X 
+^Y 
+^Z 
+^[ 
+^\ 
+^] 
+^^ 
+^_ 
+Name 
+NUL 
+SOH 
+STX 
+ETX 
+EOT 
+ENQ 
+ACK 
+BEL, \a 
+BS, \b 
+TAB, \t 
+LF, \n 
+VT, \v 
+FF, \f 
+CR, \r 
+SO 
+SI 
+DLE 
+DC1 
+DC2 
+DC3 
+DC4 
+NAK 
+SYN 
+ETB 
+CAN 
+EM 
+SUB 
+ESC 
+FS 
+GS 
+RS 
+US 
+Dec Char 
+SP 
+! 
+“ 
+# 
+$ 
+% 
+& 
+‘ 
+( 
+) 
+* 
++ 
+, 
+-
+. 
+/ 
+0 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+: 
+; 
+< 
+= 
+> 
+? 
+Dec Char 
+@ 
+A 
+B 
+C 
+D 
+E 
+F 
+G 
+H 
+I 
+J 
+K 
+L 
+M 
+N 
+O 
+P 
+Q 
+R 
+S 
+T 
+U 
+V 
+W 
+X 
+Y 
+Z 
+[ 
+\ 
+] 
+^ 
+_ 
+Dec Char 
+` 
+a 
+b 
+c 
+d 
+e 
+f 
+g 
+h 
+i 
+j 
+k 
+l 
+m 
+n 
+o 
+p 
+q 
+r 
+s 
+t 
+u 
+v 
+w 
+x 
+y 
+z 
+{ 
+| 
+} 
+~ 
+DEL 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Appendix C – Morse Code Characters 
+
+A · — J · — — — S · · · 1 · — — — — 
+B — · · · K — · — T — 2 · · — — — 
+C — · — · L · — · · U · · — 3 · · · — — 
+D — · · M — — V · · · — 4 · · · · — 
+E · N — · W · — — 5 · · · · · 
+F · · — · O — — — X — · · — 6 — · · · · 
+G — — · P · — — · Y — · — — 7 — — · · · 
+H · · · · Q — — · — Z — — · · 8 — — — · · 
+I · · R · — · 0 — — — — — 9 — — — — · 
+
+Period [ . ] · — · — · — Colon [ : ] — — — · · · 
+Comma [ , ] — — · · — — Semicolon [ ; ] — · — · — · 
+Question Mark [ ? ] · · — — · · Double Dash [ = ] — · · · — 
+Apostrophe [ ‘ ] · — — — — · Plus [ + ] · — · — · 
+Exclamation Mark [ ! ] — · — · — — Hyphen, Minus [ -] — · · · · — 
+Forward Slash [ / ] — · · — · Underscore [ _ ] · · — — · — 
+Open Parenthesis [ ( ] — · — — · Quotation Mark [ “ ] · — · · — · 
+Close Parenthesis [ ) ] — · — — · — Dollar Sign [ $ ] · · · — · · — 
+Ampersand [ & ] · — · · · At Sign [ @ ] · — — · — · 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Appendix D Version History 
+
+Product Firmware Revisions 
+
+Product firmware revision history is available on the website support page: http://www.vyex.com/support.html 
+
+User Manual Revisions 
+
+1.0c – 1-Sept-2003 
+· First General release. 
+
+1.2 – 21-Oct-2003 
+
+· Added new command word 9710 
+
+· Corrected sample rate limitations for WAV files. ADPCM will support a maximum of 16kHz, not 22.05kHz as 
+previously stated. 
+
+1.3 – 10-Dec-2003 
+· Added PCB revision “E” schematic. 
+· Added daughter board schematic and installation instructions. 
+· Added commentary regarding bugs fixed in 7K firmware version 2.04a 
+
+1.5 – 9-Feb-2004 
+· Added information regarding speed factor command 9702 
+· Modified information regarding DIR command to reflect new card identifier information 
+· Corrected example given for word 9710 and clarified example in 9701. 
+
+1.5a – 17-Feb-2004 
+· Added version release notes for 7K firmware version 2.04b 
+
+1.6 – 20-Mar-2004 
+· Added version release notes for 7K firmware version 2.04c & 2.04d 
+
+1.6a – 12-May-2004 
+· Updated pictures and schematic to depict current PCB revision. 
+
+1.7 – 25-July-2004 
+· Added information regarding 2.04e 7K firmware 
+
+1.7a – 13-May-2006 
+· Added information regarding 2.04f 7K firmware 
+
+1.8 – 14-Aug-2007 
+· Added information regarding version 7KDAB version 1.8 firmware 
+
+2.0 – 19-Aug-2007 
+· Added information regarding version 7KDAB version 2.0 firmware 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Appendix E 7K Version 2.04 Release Notes 
+
+Disclaimer 
+
+While this software is derived from SCOM’s Version 2.03b firmware, it is not supported by SCOM. Any support issues 
+related to this software need to be directed to Vyex LLC. 
+
+The copyright for this software is still held by SCOM and it is SCOM’s sole discretion that determines how this firmware 
+may be made available. 
+
+Overview 
+
+This firmware version contains new functionality to better integrate the 7K Digital Audio Board (DAB) with the operation of 
+the repeater controller. 
+
+In addition to DAB specific additions, additional controller enhancements were introduced and are presented in this 
+appendix. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+New Commands 
+
+{PW} 16 Stop playback of current speech word 
+
+Issuing this command will kill a spoken word currently in progress. It’s intent is to provide a means of halting a long 
+informational message. 
+
+{PW} 24 xxxx Remove Command From Macro 
+
+Removes last command from Macro ‘xxxx’. 
+
+Reports “OK” if successful, or “? LAST” if there is only one command left in the macro. 
+
+To delete the last command in the macro, you need to delete the macro and re-create it. 
+
+{PW} 36 T F xxxx Modify ID Timers 
+
+T = ‘1’ for Transmitter 1, or ‘2’ for Transmitter 2 
+
+F = function code 
+0 Terminate ID timer activity. If ID is pending, it is cancelled. 
+1 Set ID timer to maximum. ID is NOT triggered. 
+2 Set ID timer to maximum. ID is immediately triggered. 
+3 Ensure Normal ID cycle. Start’s ID timer if not already running, otherwise this command has no 
+
+effect. 
+4 Ensure Final ID cycle. Start’s ID timer if not already running, and sets the pending ID flag as 
+though user activity had occurred. If timer was running, this command has no effect. 
+5 If ID timer is not running, set the ID timer to maximum and execute macro ‘xxxx’ 
+
+xxxx = Macro name for function 5 
+
+Example use showing a friendly on the hour ID: 
+
+{PW} 28 01 8001 99 99 06 59 ;enable on the hour ID’s starting at 6:59am 
+{PW} 28 02 8002 99 99 21 01 ;disable on the hour ID’s ending at 9:01pm 
+
+{PW} 20 8001 {PW} 28 00 4000 99 99 99 00 ;create hourly scheduler setpoint 
+{PW} 20 8002 {PW} 28 00 ;delete hourly scheduler setpoint 
+
+{PW} 20 4000 {PW} 36 5 4001 ;if ID timer is not running, call macro 4001 
+;and start the ID timer running 
+
+; Macro 4001 speaks “KA9FUR repeater” and if interrupted by user activity will revert to “KA9FUR” in CW 
+
+{PW} 20 4001 {PW} 15 9981 9961 000 0260 0001 0335 0149 0540 0401 0421 9902 54 59 0852 67 20 10 09 15 30 27 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+{PW} 49 90/91/92/93 xx Message Handler Initial Message Delay 
+
+Timer’s 90 through 93 now allow the user to determine the initial message delay value for individual message types. 
+
+In previous versions, these timer delay values were fixed at 1.0 seconds. The user can now specify a timer value of zero 
+to 5.0 seconds with 100ms resolution. 
+
+Timer: 
+
+90 – CW pre-message delay associated with special message character ‘54’ 
+91 – Beep pre-message delay associated with special message character ‘54’ 
+92 – Paging pre-message delay that is always present 
+93 – Speech pre-message delay associated with special word ‘0000’ 
+
+These timer delay’s are utilized only at the beginning of a new message sequence, and with the exception of a paging 
+sequence, the delay only occurs if the message begins with the special message character or word. 
+
+Examples: 
+
+{PW} 49 90 15 ;set CW initial delay to 1.5 seconds 
+{PW} 49 93 20 ;set speech initial delay to 2.0 seconds 
+
+;send CW message “KA9FUR” with an initial delay 
+{PW} 15 9900 54 59 0852 67 20 10 09 15 30 27 
+
+;send speech message “KA9FUR repeater” with an initial delay 
+{PW} 15 9960 0000 0260 0001 0335 0149 0540 0401 0421 
+
+{PW} 49 94/95 xx Logic output pulse duration 
+
+These timers were introduced in version 2.04f. 
+
+Timer 94 now sets the logic pulse ON duration, and timer 95 sets the logic pulse OFF duration. Timer units are in 10ms 
+increments with the minimum value of 10ms and the maximum of 2540ms. 
+
+The pulsed output duration may vary up to +/-10ms. 
+
+NOTE: If new firmware is installed in a controller that previously contained an older 2.04 variant AND the 
+controller is not cold initialized, the timer values will default to zero, meaning the pulsed outputs will not work. In 
+order to retain backward compatibility either manually set both of the timer values to ‘50’ (500ms), OR cold 
+initialize the controller. 
+
+Examples: 
+
+{PW} 49 94 50 ;set logic output pulsed on delay to 500ms 
+{PW} 49 95 10 ;set logic output pulsed off delay to 100ms 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+{PW} 76 ff yyyy (zzzz) IF-THEN-ELSE 
+
+‘ff’ is the feature to be tested 
+‘yyyy’ is the macro to be executed if the feature tests non-zero / true. 
+‘zzzz’ is the optional macro to be executed if the feature tests zero / false. 
+
+Function ‘ff’ Item Tested Function ‘ff’ Item Tested 
+00 7KDAB installed 33 Rx1 Anti-Kerchunk Timer 
+01 User Input 1 34 Rx1 Anti-Kerchunk Rearm Timer 
+02 User Input 2 35 Rx1 Timeout Penalty Timer 
+03 User Input 3 36 Rx1 Activity Timer 
+04 User Input 4 37 Tx2 ID Timer 
+05 User Input 5 38 Tx2 Unkey Delay Timer 
+06 User Input 6 39 Rx2 Activity Timer 
+07 User Output 1 40 Rx3 Activity Timer 
+08 User Output 2 41 Autopatch Redial Timer 
+09 User Output 3 42 Autopatch Timeout Message Timer 
+10 User Output 4 43 Autopatch Call Duration Timer 
+11 User Output 5 44 Landline Control Timer 
+12 User Output 6 45 Landline Ringout Message Timer 
+13 User Output 7 46 Landline Timeout Warning Timer 
+14 Rx1 COR 47 Landline inter-ring timer 
+15 Rx1 CTCSS 48 User Timer 1 
+16 Rx2 COR 49 User Timer 2 
+17 Rx2 CTCSS 50 User Timer 3 
+18 Rx3 COR 51 User Timer 4 
+19 Rx3 CTCSS 52 User Timer 5 
+20 PTT 1 53 User Timer 6 
+21 PTT 2 54 User Timer 7 
+22 Land Line Busy Input 55 User Timer 8 
+23 Land Line Ring Input 56 User Timer 9 
+24 Land Line Busy Output 57 User Timer 10 
+25 Tx1 ID Timer 58 User Switch 1 (cmd 63 92 x) 
+26 Tx1 Post Activity Timer 59 User Switch 2 (cmd 63 93 x) 
+27 Tx1 Drop Out Timer 60 User Switch 3 (cmd 63 94 x) 
+28 Tx1 Courtesy Timer 61 User Switch 4 (cmd 63 95 x) 
+29 Tx1 Unkey Delay Timer 62 User Switch 5 (cmd 63 96 x) 
+30 Rx1->Tx1 Timeout Timer 63 User Switch 6 (cmd 63 97 x) 
+31 Rx2->Tx1 Timeout Timer 64 User Switch 7 (cmd 63 98 x) 
+32 Rx3->Tx1 Timeout Timer 
+
+Example: 
+{PW} 76 03 2001 2000 ;test user input 3, if input is active then execute macro 2001, 
+;otherwise execute macro 2000. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+New Switches 
+
+{PW} 63 16 x Daylight Savings time correction 
+This switch defaults to ‘off’. 
+If switch is turned on, one hour will be added to the Real Time Clock at 2:00am on the first Sunday in April, and one hour 
+will be subtracted at 2:00am on the last Sunday in October. 
+
+{PW} 63 19 x Ignore Landline Busy Input 
+This switch defaults to ‘off’. 
+If switch is turned on, the landline busy input will be ignored by the interconnect routines and becomes available for the 
+user to utilize as a generic user input with the commands that are otherwise already available. 
+
+{PW} 63 33 x Enable “OK” Command Responses 
+{PW} 63 34 x Enable “?ERR” Command Responses 
+These two switches default to ‘on’. 
+Note: Switch 02 still acts as a master enable/disable function for command responses. 
+
+{PW} 63 35 x Courtesy message can be queued during message playback 
+This switch defaults to ‘off’. 
+Turning this switch on will, for example, allow a courtesy message to play after the initial ID. 
+
+{PW} 63 36 x Suppress command responses within macro execution 
+This switch defaults to ‘off’. 
+Turning this switch on will, inhibit simple (i.e. “OK”, and “ERR?”) command responses when commands are executed from 
+within a macro. 
+
+This switch command was introduced in 2.04e. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+{PW} 63 92 x User Soft Switch 1 
+{PW} 63 93 x User Soft Switch 2 
+{PW} 63 94 x User Soft Switch 3 
+{PW} 63 95 x User Soft Switch 4 
+{PW} 63 96 x User Soft Switch 5 
+{PW} 63 97 x User Soft Switch 6 
+{PW} 63 98 x User Soft Switch 7 
+All user switches default off and survive power failure. The user can test switch conditions with new user command 76. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Changed Commands 
+
+{PW} 02 f … CTCSS Encoder 
+
+Function code ‘f’ Description 
+0 CTCSS Encoder OFF 
+1 CTCSS Encoder ON continuously when transmitter is active 
+2 Tx1 coupled OFF delay. 
+Turns on when Transmitter goes active, and turns off when 
+delay timer expires. 
+3 Receiver for Tx1 coupled OFF delay. 
+Turns on when any receiver with a path to Tx1 goes active, 
+and turns off when delay timer expires. 
+4 Receiver for Tx1 coupled loss OFF delay. 
+Turns on when any receiver with a path to Tx1 is active, and 
+upon signal loss starts delay timer. When delay timer expires, 
+encoder is turned off. 
+7 Zero’s the dynamic timer value, forcing the encoder to 
+immediately turn off. 
+8 ‘xxx’ Set’s the default timer value to ‘xx.x” seconds. Valid range is 
+0 to 12.7 seconds. 
+9 ‘x’ Associates user output ‘x’ with the CTCSS encode function. 0 
+disables feature, 1-6 associate a User output with this feature. 
+
+Examples: 
+
+Encode during user transmissions and hold the encoder active for an additional 200ms after receiver squelch closes 
+to allow for mobile flutter. Use this example for making your repeater more compatible with an on air linking method, 
+such as IRLP, that relies on the CTCSS encoder following user activity. 
+
+{PW} 02 8 2 ;set timer value to 200ms 
+{PW} 02 9 3 ;(optional) associate user output 3 with CTCSS encode function 
+{PW} 02 4 ;set mode 4 to cause CTCSS to be encoded during all user transmissions 
+
+Function ‘7’ could be used to disable the CTCSS encoder after a courtesy message is sent. 
+
+{PW} 02 8 127 ;set timer to maximum value 
+{PW} 02 4 ;select mode 4 
+{PW} 20 1234 {PW} 02 7 ;create macro 1234 with cmd 02 function 7 
+{PW} 31 10 9910 74 09 9999 1234 ;60ms, 440Hz beep followed by macro 1234 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+{PW} 40 r xxx Set Transmit Timeout Timers 
+
+The new ‘r’, receiver, parameter allows the user to independently set different transmit timeout timer values based on the 
+active receiver(s). Valid values are 1, 2, or 3. 
+
+The valid range for ‘xxx’ remains the same. A value of ‘0’ (zero) disables the timeout timer for a given receiver. 
+
+The timeout logic was changed such that each receiver now has its own timeout timer. Once ANY timer is started, it is not 
+reset until the courtesy message event occurs. 
+
+Command 10 will reset ALL timeout timers simultaneously. 
+
+{PW} 89 … Select DTMF Priority/Scan 
+
+This command was changed to cause the DTMF decoder immediately re-prioritize the DTMF inputs rather than waiting for 
+a high priority device to release it. 
+
+{PW} 50 0/1 99 Review Initial and Normal Tail ID’s 
+
+This command now only sends the tail ID message rather than causing the full ID to be sent. The change was necessary 
+due to some code restructuring related to how these messages are stored internally. 
+
+{PW} 96 t xx Set DTMF Mute Delay 
+
+The DTMF muting logic has been changed to utilize two separate mute delay timers. One timer applies only to the first 
+DTMF digit, the other timer applies to all subsequent digits. Setting the mute time for the first digit relatively short or to 
+zero, and the mute timer for all subsequent digits substantially longer will provide better performance in situations where 
+decoder falsing has been a problem. 
+
+When a “*” or “#” command terminator is received, the 1st digit delay timer value will be loaded into the mute timer, thus 
+un-muting the audio more quickly upon command completion. 
+
+A ‘t’ (timer) value of zero (0) allows the first digit delay timer to be set, and a value of one (1) allows the delay timer for all 
+subsequent digits to be set. 
+
+The timer value ‘xx’ is set in 100ms units and can range from zero to 2.5 seconds. 
+
+On a cold reset, both timers default to 500ms. 
+
+Example: 
+
+{PW} 96 0 3 ;set 1st digit delay timer to 300ms 
+{PW} 96 1 25 ;set subsequent digit delay timer to 2.5 seconds 
+
+{PW} 63 xx 0/1/2/3 Set User Switch 
+
+In version 2.04e, if the switch values of ‘2’ or ‘3’ are used, they will turn the corresponding switch ‘off’ or ‘on’ but will not 
+send any command response. This addition was made for those who wish to eliminate command responses from within 
+macros, but who do not wish to use the new functionality in user switch 36 to suppress all command responses from 
+within a macro. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+New Message Types 
+
+Four new message types were added to support interruptible speech and Morse messages. 
+
+9901 -CW Primary 
+9902 -CW Secondary 
+9911 -Beep Primary 
+9912 -Beep Secondary 
+9961 -Speech Primary 
+9962 -Speech Secondary 
+
+Primary messages will cease playback if a receiver with its path enabled to a transmitter associated with the message 
+playback is active at the time the playback commences, or any time during message playback. 
+
+Secondary messages will only play in circumstances when a primary message would not. 
+
+Examples: 
+
+This message would speak “KA9FUR Repeater” but if a receiver went active would revert to “KA9FUR” in CW. 
+
+{PW} 15 9981 9961 0260 0001 0335 0149 0540 0401 0421 9902 59 0852 67 20 10 09 15 30 27 
+
+The following set’s the courtesy tone as mixed on Tx1 as a secondary beep message such that any activity on the 
+repeater will cause the courtesy message to be discarded. When the new switch “35” is enabled, courtesy messages will 
+be queued when the repeater is initially activated and an ID is sent. If the resulting courtesy message is not sent as a 
+“primary” message, then the courtesy message would be sent immediately after the initial ID even if there was user 
+activity present. 
+
+{PW} 31 10 9981 9911 76 55 57 0459 12 57 0512 04 ;set courtesy message 
+
+Operational Changes 
+
+Added area codes 877 and 866 to the toll free table. 
+Command 30 and 80 will now accept 1 or 2 digit timer values. 
+Command 32, transmitter drop out delay, will now accept 1, 2, or 3 digit timer values of up to 12.7 seconds. 
+Commands 40, 65, and 79 will now accept a single zero rather than requiring 3 zeros. 
+A new courtesy message will not be placed in the global message queue if there is still a courtesy message pending in 
+
+the queue. Note that this change only applies to the courtesy message ({PW} 31 10…) and that the courtesy event macro 
+
+will still be triggered without regard as to whether the courtesy message has been sent or not. 
+The speech board timeout timer is now 10 seconds rather than the 25 seconds in previous versions (even though it was 
+documented as being 5 seconds it was really 25 seconds). 
+
+The number of permissible macros has been increased to 340. 
+Fixed CW messages were modified to include the special initial delay character ‘54’ at the beginning of the message such 
+that an initial delay is present. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Bug Fixes and Changes 
+Version 2.04 
+
+Special Messages 9860 through 9895 will no longer cause the controller to crash. 
+Fixed a problem that could cause the hardware watchdog to trip during cold initialization. 
+
+Note: When upgrading from one version 2.04 variant to another, there is no need to cold initialize the controller. 
+Version 2.04a 
+
+This version fixes the macro corruption problem in commands 00, 02, 40, 50, 76, and 96. 
+
+A potential problem related to the courtesy beep was addressed. There was a potential that could require the controller to 
+be cold initialized in order for the controller to once again generate a courtesy beep message. 
+
+An initial delay character, 54, was added to command 33’s message playback to allow more time for the control user to 
+hear the entire command response. 
+
+Version 2.04b 
+
+This version fixes a problem with command 76. Some of the IF tests were incorrectly testing some byte wide variables as 
+words and vice versa. Due to the nature of the bug, there is no way to tell, at any given movement, which tests would be 
+made incorrectly. 
+
+Command 76 was also changed to queue any resulting macro at the head of the work queue rather than at the end of the 
+queue. This allows the immediate execution of the macro, which in turn also allows the nesting and stacking of IF tests. 
+
+Command 65 was broken in the transition from 2.03b to 2.04 and was not setting the timer to the user supplied value. 
+The command now works correctly. 
+
+Version 2.04c 
+
+This version fixes additional problems with command 76. The tests of hardware inputs did not work correctly and always 
+returned TRUE. 
+
+As a result of the changes in 2.04c, when this version is run for the first time, all appropriate input transition events will 
+execute once on power up. This is due to the way that the last known input state is stored in non-volatile memory. 
+
+Version 2.04d 
+
+This version fixes an old bug in the Remote Base software that was exposed as a result of unrelated changes made in 
+
+2.04 to the way that the interrupt time slicing works. Specifically when entering a command such as RBPW 41 147000 2 
+the controller would incorrectly return ?ERR 2 rather than allowing the command to execute. 
+Version 2.04e 
+
+This version added additional functionality to command 63 to suppress command responses from within macros, as well 
+as new user switch 36, which modifies the behavior of command responses as a result of command execution from within 
+a macro. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Version 2.04f 
+
+· Fixed a problem introduced in version 2.04a related to being able to queue multiple courtesy beep messages while a 
+message playback was already in progress. 
+
+· Added separate time-out timer reset delay timers to prevent a situation where a short transmission on one receiver 
+could prematurely cause a time-out of a receiver with a longer time-out time set. An example of this would be if the 
+time-out timer for Rx1 was set to 30 minutes, and Rx2 was set to 3 minutes, if a long transmission was in progress on 
+Rx1 and a brief transmission occurred on Rx2, the repeater would time out based on the shorter 3 minute time even 
+though Rx2 had gone inactive. The new method will allow the individual time-out timers to be reset after the courtesy 
+delay period has elapsed even though a courtesy message was not necessarily generated… in other words, the 
+courtesy reset time is still imposed on individual receivers even though a different receiver still remains active. 
+
+· Added programmable logic output pulse on/off duration periods. 
+
+· Added new feature such that if the internal INIT button is held for 5 seconds AFTER power up has occurred, the 
+Master Password will be reset to default (99) and the Warm Reset message will be sent as an acknowledgement. 
+Useful for regaining control if the password(s) are lost, forgotten or mistakenly changed. 
+
+· The software version runtime variables for CW (9898) and Speech (9899) now include the version suffix as part of the 
+message. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Appendix F Schematics 
+
+Revision F 
+
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Revision E 
+
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Revision D1 
+
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Daughter board used with Digital Audio Boards prior to revision “E”, to correct speech bus voltage overshoot problem. 
+
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
+Appendix G – Daughter PCB Installation 
+
+
+The daughter board must be used in conjunction with 7KDAB revisions A through D1. 
+
+The board is properly installed when the writing on the printed circuit board is correctly oriented when viewed from the 
+front of the controller. 
+
+When installing the daughter board, take care to properly align the female header connector with the Speech connector 
+on the 7K main printed circuit board. Extreme damage can occur if any of the ribbon connectors are misaligned or 
+if the daughter board is plugged in 180 degree’s from its proper orientation. 
+
+7KDAB, Version 2.0, 19-Aug-2007 Ó Vyex LLC, 2003-2007 
+
+
